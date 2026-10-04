@@ -1,4 +1,30 @@
 import React from "react"
+import {
+    siApachemaven,
+    siBootstrap,
+    siCss,
+    siGit,
+    siGithub,
+    siGithubactions,
+    siHtml5,
+    siIntellijidea,
+    siJavascript,
+    siJquery,
+    siMysql,
+    siNextdotjs,
+    siOpenjdk,
+    siPostgresql,
+    siPostman,
+    siReact,
+    siSpring,
+    siSpringsecurity,
+    siSwagger,
+    siTailwindcss,
+    siTanstack,
+    siTypescript,
+    siWebstorm,
+    type SimpleIcon,
+} from "simple-icons"
 
 // Common icon container style
 const IconWrapper = ({
@@ -14,6 +40,38 @@ const IconWrapper = ({
         {children}
     </div>
 )
+
+function SimpleBrandIcon({
+    icon,
+    lightTile = false,
+}: {
+    icon: SimpleIcon
+    lightTile?: boolean
+}) {
+    return (
+        <IconWrapper>
+            <svg
+                viewBox="0 0 24 24"
+                width="100%"
+                height="100%"
+                fill="currentColor"
+                aria-hidden="true"
+                className={lightTile ? "rounded-[4px] bg-white p-1" : undefined}
+                style={{ color: `#${icon.hex}` }}
+            >
+                <path d={icon.path} />
+            </svg>
+        </IconWrapper>
+    )
+}
+
+const simpleBrand = (icon: SimpleIcon, lightTile = false): React.FC => {
+    const BrandIcon: React.FC = () => (
+        <SimpleBrandIcon icon={icon} lightTile={lightTile} />
+    )
+    BrandIcon.displayName = `${icon.title}Icon`
+    return BrandIcon
+}
 
 // Next.js Icon
 export const NextJsIcon = () => (
@@ -253,7 +311,10 @@ export const SpringDataIcon = () => (
             width="100%"
             height="100%"
         >
-            <path d="M12 16v30c0 4.4 9 8 20 8s20-3.6 20-8V16H12z" fill="#68bd45" />
+            <path
+                d="M12 16v30c0 4.4 9 8 20 8s20-3.6 20-8V16H12z"
+                fill="#68bd45"
+            />
             <ellipse cx="32" cy="16" rx="20" ry="8" fill="#8fd46f" />
             <path
                 d="M12 28c3.6 3.3 11 5.5 20 5.5S48.4 31.3 52 28M12 40c3.6 3.3 11 5.5 20 5.5S48.4 43.3 52 40"
@@ -338,12 +399,35 @@ export const BootstrapIcon = () => (
     </IconWrapper>
 )
 
-// MyBatis Icon (simplified placeholder)
+// MyBatis does not currently have a Simple Icons entry, so keep a compact
+// database-mapper mark instead of showing a text-only placeholder.
 export const MyBatisIcon = () => (
     <IconWrapper>
-        <div className="flex h-full w-full items-center justify-center rounded bg-red-600 text-[8px] font-bold text-white">
-            MyB
-        </div>
+        <svg
+            viewBox="0 0 64 64"
+            width="100%"
+            height="100%"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+            <path
+                d="M12 16c0-4.4 9-8 20-8s20 3.6 20 8v32c0 4.4-9 8-20 8s-20-3.6-20-8V16Z"
+                fill="#2F6DB2"
+            />
+            <ellipse cx="32" cy="16" rx="20" ry="8" fill="#5C9BD5" />
+            <path
+                d="M12 28c0 4.4 9 8 20 8s20-3.6 20-8M12 40c0 4.4 9 8 20 8s20-3.6 20-8"
+                stroke="#fff"
+                strokeWidth="3"
+            />
+            <path
+                d="m23 22 5 6 6-8 7 9"
+                stroke="#fff"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+            />
+        </svg>
     </IconWrapper>
 )
 
@@ -597,33 +681,33 @@ export const CodeIcon = () => (
 )
 
 export const TechIcons: Record<string, React.FC> = {
-    HTML: HtmlIcon,
-    CSS: CssIcon,
-    JavaScript: JavaScriptIcon,
-    jQuery: JQueryIcon,
-    TypeScript: TypeScriptIcon,
-    React: ReactIcon,
-    "Next.js": NextJsIcon,
-    "TanStack Query": TanStackIcon,
-    "Tailwind CSS": TailwindIcon,
-    Java: JavaIcon,
-    "Java 8+": JavaIcon,
-    "Spring Boot": SpringIcon,
-    "Spring Security": SpringSecurityIcon,
+    HTML: simpleBrand(siHtml5),
+    CSS: simpleBrand(siCss),
+    JavaScript: simpleBrand(siJavascript),
+    jQuery: simpleBrand(siJquery),
+    TypeScript: simpleBrand(siTypescript),
+    React: simpleBrand(siReact),
+    "Next.js": simpleBrand(siNextdotjs, true),
+    "TanStack Query": simpleBrand(siTanstack),
+    "Tailwind CSS": simpleBrand(siTailwindcss),
+    Java: simpleBrand(siOpenjdk),
+    "Java 8+": simpleBrand(siOpenjdk),
+    "Spring Boot": simpleBrand(siSpring),
+    "Spring Security": simpleBrand(siSpringsecurity),
     "Spring Data JPA": SpringDataIcon,
     MyBatis: MyBatisIcon,
     "REST APIs": RestApiIcon,
-    Maven: MavenIcon,
+    Maven: simpleBrand(siApachemaven),
     SQL: SqlIcon,
-    PostgreSQL: PostgreSQLIcon,
-    MySQL: MySqlIcon,
+    PostgreSQL: simpleBrand(siPostgresql),
+    MySQL: simpleBrand(siMysql),
     Oracle: OracleIcon,
-    Bootstrap: BootstrapIcon,
-    Git: GitIcon,
-    GitHub: GitHubIcon,
-    "DevOps Fundamentals": CodeIcon,
-    "IntelliJ IDEA": IntellijIcon,
-    WebStorm: WebStormIcon,
-    Postman: PostmanIcon,
-    Swagger: SwaggerIcon,
+    Bootstrap: simpleBrand(siBootstrap),
+    Git: simpleBrand(siGit),
+    GitHub: simpleBrand(siGithub, true),
+    "DevOps Fundamentals": simpleBrand(siGithubactions),
+    "IntelliJ IDEA": simpleBrand(siIntellijidea),
+    WebStorm: simpleBrand(siWebstorm),
+    Postman: simpleBrand(siPostman),
+    Swagger: simpleBrand(siSwagger),
 }

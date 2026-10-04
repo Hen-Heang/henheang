@@ -8,15 +8,30 @@ function resolveIcon(name: string) {
     return TechIcons[stripped] ?? CodeIcon
 }
 
-export function TechCard({ name, category }: { name: string; category?: string }) {
+export function TechCard({
+    name,
+    category,
+}: {
+    name: string
+    category?: string
+}) {
     return (
-        <div className="flex items-center gap-3 rounded-xl border border-border bg-surface px-3.5 py-3">
-            <span className="h-6 w-6 shrink-0" aria-hidden="true">
+        <div className="group flex min-h-[72px] items-center gap-3 rounded-2xl border border-border bg-surface px-3.5 py-3 transition-all duration-200 hover:-translate-y-0.5 hover:border-brand/30 hover:bg-surface-hover hover:shadow-sm">
+            <span
+                className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-border/80 bg-background p-2"
+                aria-hidden="true"
+            >
                 {createElement(resolveIcon(name))}
             </span>
-            <span className="min-w-0">
-                <span className="block truncate text-sm font-medium text-fg">{name}</span>
-                {category && <span className="block font-mono text-[10px] uppercase tracking-wider text-fg-muted">{category}</span>}
+            <span className="min-w-0 leading-tight">
+                <span className="block truncate text-sm font-semibold text-fg">
+                    {name}
+                </span>
+                {category && (
+                    <span className="mt-1 block font-mono text-[10px] uppercase tracking-[0.14em] text-fg-muted">
+                        {category}
+                    </span>
+                )}
             </span>
         </div>
     )
