@@ -1,6 +1,5 @@
 import React from "react"
 import Link from "next/link"
-import Image from "next/image"
 import { ArrowRight, ArrowUpRight, FileText } from "lucide-react"
 import { GithubIcon } from "@/src/components/icons/social"
 import { Container } from "@/src/components/system/Container"
@@ -108,35 +107,30 @@ export function Hero({
                 <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
                     <div className="flex max-w-xl flex-col items-start">
                         <HeroEntrance className="mb-6">
-                            <div className="flex items-center gap-3.5">
-                                <div className="relative shrink-0">
-                                    <Image
-                                        src={profile.profileImage || "/image/heang_new.jpeg"}
-                                        alt={profile.name}
-                                        width={52}
-                                        height={52}
-                                        priority
-                                        className="h-13 w-13 rounded-2xl object-cover ring-2 ring-border shadow-md"
-                                    />
-                                    {profile.available && (
-                                        <span className="absolute -bottom-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-surface ring-2 ring-surface" title="Available for opportunities">
-                                            <span className="h-2 w-2 rounded-full bg-emerald-500 animate-pulse" />
-                                        </span>
-                                    )}
-                                </div>
+                            <div className="flex items-center gap-2.5">
                                 <div className="min-w-0">
                                     <p className="text-sm font-medium text-fg">
                                         Based in {profile.location}
                                     </p>
-                                    <p className="mt-0.5 text-xs text-fg-muted">
-                                        {profile.available ? "Open to opportunities" : "Currently not looking"}
+                                    <p className="mt-0.5 inline-flex items-center gap-1.5 text-xs text-fg-muted">
+                                        {profile.available && (
+                                            <span
+                                                className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                                                aria-hidden
+                                            />
+                                        )}
+                                        <span>
+                                            {profile.available
+                                                ? "Open to opportunities"
+                                                : "Currently not looking"}
+                                        </span>
                                     </p>
                                 </div>
                             </div>
                         </HeroEntrance>
 
                         <HeroEntrance delay={0.06}>
-                            <h1 className="text-balance text-4xl font-extrabold tracking-tight text-fg sm:text-5xl lg:text-6xl leading-[1.06]">
+                            <h1 className="text-balance text-4xl font-extrabold leading-[1.06] tracking-tight text-fg sm:text-5xl lg:text-6xl">
                                 {profile.name}
                             </h1>
                         </HeroEntrance>
@@ -163,10 +157,14 @@ export function Hero({
                             <div className="flex w-full flex-wrap items-center gap-3">
                                 <Link
                                     href="#work"
-                                    className="group inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:brightness-110 active:scale-[0.98] sm:w-auto"
+                                    className="shadow-xs group inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] sm:w-auto"
                                 >
                                     <span>View Backend Work</span>
-                                    <ArrowRight size={15} aria-hidden className="transition-transform duration-200 group-hover:translate-x-0.5" />
+                                    <ArrowRight
+                                        size={15}
+                                        aria-hidden
+                                        className="transition-transform duration-200 group-hover:translate-x-0.5"
+                                    />
                                 </Link>
                                 <Link
                                     href="/resume"
@@ -179,12 +177,16 @@ export function Hero({
                                     href={profile.socialLinks.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex h-11 w-full items-center justify-center gap-1.5 px-3 text-sm font-medium text-fg-secondary sm:w-auto transition-colors hover:text-fg"
+                                    className="inline-flex h-11 w-full items-center justify-center gap-1.5 px-3 text-sm font-medium text-fg-secondary transition-colors hover:text-fg sm:w-auto"
                                     aria-label="View Hen Heang on GitHub (opens in a new tab)"
                                 >
                                     <GithubIcon size={16} />
                                     <span>GitHub</span>
-                                    <ArrowUpRight size={13} aria-hidden className="text-fg-muted" />
+                                    <ArrowUpRight
+                                        size={13}
+                                        aria-hidden
+                                        className="text-fg-muted"
+                                    />
                                 </a>
                             </div>
                         </HeroEntrance>
@@ -192,11 +194,14 @@ export function Hero({
                         <HeroEntrance delay={0.3} className="mt-8 w-full">
                             <dl className="grid w-full grid-cols-3 gap-3 border-y border-border py-4">
                                 {stats.map((stat) => (
-                                    <div key={stat.label} className="flex flex-col-reverse">
+                                    <div
+                                        key={stat.label}
+                                        className="flex flex-col-reverse"
+                                    >
                                         <dt className="mt-0.5 text-[11px] font-medium uppercase tracking-wider text-fg-muted">
                                             {stat.label}
                                         </dt>
-                                        <dd className="font-mono text-2xl font-bold tracking-tight text-fg tabular-nums sm:text-3xl">
+                                        <dd className="font-mono text-2xl font-bold tabular-nums tracking-tight text-fg sm:text-3xl">
                                             {stat.value}
                                         </dd>
                                     </div>
