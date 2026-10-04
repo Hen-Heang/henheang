@@ -26,5 +26,4 @@ on conflict (title, issuer) do update set
   description = excluded.description,
   image = excluded.image,
   link = excluded.link,
-  sort_order = excluded.sort_order,
-  updated_at = now();
+  sort_order = excluded.sort_order;
