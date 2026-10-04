@@ -45,3 +45,18 @@ export interface AXWorkflowStep {
     label: string
     detail: string
 }
+
+export interface AXHarnessProject {
+    name: string
+    tagline: string
+    summary: string
+    version: string
+    status: string
+    consoleUrl: string
+    githubUrl: string
+    pillars: string[]
+    highlights: { title: string; detail: string }[]
+    architecture: string[]
+    commands: { command: string; detail: string }[]
+    stack: string[]
+}

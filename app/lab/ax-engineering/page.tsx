@@ -20,6 +20,7 @@ import {
 } from "@/src/components/lab/ax-engineering/AXCurriculum"
 import { AXWorkflow } from "@/src/components/lab/ax-engineering/AXWorkflow"
 import { AXJourneyMap } from "@/src/components/lab/ax-engineering/AXJourneyMap"
+import { AXHarnessShowcase } from "@/src/components/lab/ax-engineering/AXHarnessShowcase"
 import { ArchitectureDiagram } from "@/src/components/lab/ui/ArchitectureDiagram"
 import { LabHeroBackdrop } from "@/src/components/lab/ui/LabHeroBackdrop"
 import { LabNav } from "@/src/components/lab/ui/LabNav"
@@ -88,6 +89,8 @@ export default function AXEngineeringPage() {
             </LabHeroBackdrop>
 
             <AXJourneyMap />
+
+            <AXHarnessShowcase />
 
             <section
                 id="roadmap-poster"

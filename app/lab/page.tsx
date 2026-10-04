@@ -14,6 +14,7 @@ import { LabSearchClient } from "@/src/components/lab/home/LabSearchClient"
 import { LabLearningDashboard } from "@/src/components/lab/home/LabLearningDashboard"
 import { ContinueLearning } from "@/src/components/lab/home/ContinueLearning"
 import { ProgressSummary } from "@/src/components/lab/home/ProgressSummary"
+import { AXHarnessCallout } from "@/src/components/lab/ax-engineering/AXHarnessShowcase"
 
 export const revalidate = 60
 
@@ -55,6 +56,7 @@ export default async function EngineeringLabPage() {
             <LabHero />
             <ContinueLearning backendItems={backendItems} devopsTopics={devopsRoadmap} />
             <LabLearningDashboard backendItems={backendItems} devopsTopics={devopsRoadmap} />
+            <AXHarnessCallout />
             <LabSearchClient items={items}>
                 <LabCategoryNav />
             </LabSearchClient>
