@@ -41,3 +41,4 @@ export const axWorkflow: AXWorkflowStep[] = [
         detail: "Feed evidence into the next iteration.",
     },
 ]
+export { axHarness } from "./harness"
