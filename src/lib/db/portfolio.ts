@@ -67,14 +67,17 @@ function mapProject(r: any): unknown {
   // also needing a matching /admin edit or a database reseed. Falls back to
   // the DB row's image for admin-only projects that have no static entry.
   const s = staticProjects.find((p) => p.slug === r.slug)
+  // Upgrade the known old branding without overwriting a later admin edit.
+  // Keep the hengo slug so existing case-study links continue to resolve.
+  const legacyHengo = r.slug === 'hengo' && typeof r.title === 'string' && /^Hengo(?:$|[ —–-])/.test(r.title) && s
   return {
     slug: r.slug,
-    title: r.title,
-    description: r.description,
+    title: legacyHengo ? s.title : r.title,
+    description: legacyHengo ? s.description : r.description,
     technologies: r.technologies,
     image: s?.image ?? r.image,
     imageFit: s?.imageFit,
-    github: r.github ?? undefined,
+    github: legacyHengo ? s.github : r.github ?? undefined,
     demo: r.demo ?? undefined,
     featured: s?.featured,
     hidden: s?.hidden,
@@ -84,9 +87,9 @@ function mapProject(r: any): unknown {
     engineeringFocus: s?.engineeringFocus,
     confidential: s?.confidential,
     businessProblem: s?.businessProblem,
-    overview: r.overview ?? undefined,
+    overview: legacyHengo ? s.overview : r.overview ?? undefined,
     process: s?.process,
-    features: r.features ?? undefined,
+    features: legacyHengo ? s.features : r.features ?? undefined,
     technicalDetails: r.technical_details ?? undefined,
     architecture: s?.architecture,
     architectureNote: s?.architectureNote,
