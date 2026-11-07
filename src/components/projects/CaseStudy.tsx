@@ -32,6 +32,8 @@ function Block({ id, title, children }: { id: string; title: string; children: R
 
 export function CaseStudy({ project, nextProject }: { project: Project; nextProject?: AdjacentProject }) {
     const isLive = Boolean(project.demo && project.demo !== "#")
+    const verification = project.confidential ? undefined : project.verification
+    const hasBackendEvidence = Boolean(project.dataModel?.length || project.apiEndpoints?.length || verification)
     const decisionCount = Math.min(
         Math.max(project.challenges?.length ?? 0, project.solutions?.length ?? 0),
         3,
@@ -46,7 +48,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
         project.screenshots?.length && { id: "screenshots", text: "Screenshots" },
         project.features?.length && { id: "build", text: "What I Built" },
         project.architecture?.length && { id: "architecture", text: "Architecture" },
-        (project.dataModel?.length || project.apiEndpoints?.length) && { id: "evidence", text: "Backend Evidence" },
+        hasBackendEvidence && { id: "evidence", text: "Backend Evidence" },
         (decisions.length || project.lessonsLearned?.length) && { id: "decisions", text: "Engineering Decisions" },
     ].filter(Boolean) as TocItem[]
 
@@ -199,7 +201,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                             </section>
                         )}
 
-                        {(project.dataModel?.length || project.apiEndpoints?.length) ? (
+                        {hasBackendEvidence && (
                             <Block id="evidence" title="Backend Evidence">
                                 <div className="grid gap-6 xl:grid-cols-2">
                                     {project.dataModel && project.dataModel.length > 0 && (
@@ -248,9 +250,26 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                                             </ul>
                                         </div>
                                     )}
+                                    {verification && (
+                                        <div className="min-w-0 xl:col-span-2">
+                                            <h3 className="text-sm font-semibold text-fg">Integration test</h3>
+                                            <p className="mt-2 text-sm leading-relaxed text-fg-secondary">
+                                                {verification.description}
+                                            </p>
+                                            <a
+                                                href={verification.href}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="mt-2 inline-flex items-center gap-2 text-sm font-medium text-brand underline underline-offset-4"
+                                            >
+                                                <GithubIcon size={14} brand={false} />
+                                                View integration test
+                                            </a>
+                                        </div>
+                                    )}
                                 </div>
                             </Block>
-                        ) : null}
+                        )}
 
                         {(decisions.length > 0 || project.lessonsLearned?.length) ? (
                             <Block id="decisions" title="Engineering Decisions">

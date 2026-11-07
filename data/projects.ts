@@ -43,6 +43,10 @@ export const projects: Project[] = [
             { method: "POST", path: "/api/v1/retailer/orders", description: "Add to cart, save drafts, and confirm a cart as a live order" },
             { method: "GET", path: "/api/v1/distributor/reports", description: "Order activity reports by month and year" },
         ],
+        verification: {
+            description: "A PostgreSQL integration test runs accept and reject operations concurrently for the same pending order and checks that exactly one succeeds.",
+            href: "https://github.com/Hen-Heang/h-phsar-api/blob/main/src/test/java/com/henheang/hphsar/service/OrderLifecycleIT.java#L235",
+        },
         challenges: [
             "Modeling one marketplace for two very different roles without duplicating business logic",
             "Guaranteeing an order can only move forward through its lifecycle, whoever is acting on it",

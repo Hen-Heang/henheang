@@ -53,6 +53,10 @@ export const ProjectSchema = z.object({
     architectureNote: z.string().optional(),
     dataModel: z.array(z.string()).optional(),
     apiEndpoints: z.array(ApiEndpointSchema).optional(),
+    verification: z.object({
+        description: z.string().min(1),
+        href: z.string().url().startsWith("https://"),
+    }).optional(),
     challenges: z.array(z.string()).optional(),
     solutions: z.array(z.string()).optional(),
     lessonsLearned: z.array(z.string()).optional(),

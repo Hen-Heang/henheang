@@ -8,8 +8,8 @@ export const experiences: ExperienceItem[] = [
         location: "Seoul, South Korea",
         summary: "Building enterprise financial web applications for government agencies and corporate clients. Developing both frontend interfaces and backend API services in Korean enterprise environment.",
         highlights: [
-            "Developing frontend pages with HTML/CSS and JavaScript (jQuery)",
-            "Building backend services with Java and MyBatis",
+            "Build voucher administration screens with HTML, CSS, and jQuery",
+            "Develop Java and MyBatis services for government-facing financial applications",
             "Designing SQL queries and connecting APIs to Oracle database",
             "Improving performance and stability of enterprise web applications",
             "Working in cross-functional team using Korean enterprise development patterns"
@@ -23,7 +23,7 @@ export const experiences: ExperienceItem[] = [
         location: "Phnom Penh, Cambodia",
         summary: "Developed B2B financial platforms including billing systems and e-commerce solutions. Built end-to-end features from database design to API implementation.",
         highlights: [
-            "Built a B2B billing and payment platform for enterprise clients",
+            "Contributed to WeBill365, a B2B billing product with Vietnamese banking integrations",
             "Designed PostgreSQL database schemas and optimized query performance",
             "Implemented Spring Security with JWT authentication",
             "Developed REST APIs with Spring Boot and MyBatis",

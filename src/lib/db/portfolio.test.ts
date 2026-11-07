@@ -63,6 +63,26 @@ describe("portfolio repository — Supabase-absent fallback", () => {
         expect(result).toEqual(projects.filter((p) => !p.hidden))
     })
 
+    it("retains the H-Phsar integration test link on a Supabase-backed case study", async () => {
+        mockGetSupabaseClient.mockReturnValue({
+            from: () => fromChain({
+                data: [{
+                    slug: "h-phsar",
+                    title: "H-Phsar",
+                    description: "B2B marketplace API",
+                    technologies: ["Spring Boot"],
+                    image: "/h-phsar.jpg",
+                }],
+                error: null,
+            }),
+        })
+        const { getProjectBySlug } = await import("./portfolio")
+
+        const project = await getProjectBySlug("h-phsar")
+        expect(project?.description).toBe("B2B marketplace API")
+        expect(project?.verification?.href).toContain("OrderLifecycleIT.java#L235")
+    })
+
     it("falls back to static data when the Supabase query errors", async () => {
         mockGetSupabaseClient.mockReturnValue({
             from: () => fromChain({ data: null, error: new Error("network error") }),
