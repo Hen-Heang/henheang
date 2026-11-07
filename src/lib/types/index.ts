@@ -67,6 +67,7 @@ export interface Project {
     architectureNote?: string
     dataModel?: string[]
     apiEndpoints?: ApiEndpoint[]
+    verification?: { description: string; href: string }
     challenges?: string[]
     solutions?: string[]
     lessonsLearned?: string[]

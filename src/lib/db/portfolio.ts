@@ -92,6 +92,7 @@ function mapProject(r: any): unknown {
     architectureNote: s?.architectureNote,
     dataModel: s?.dataModel,
     apiEndpoints: s?.apiEndpoints,
+    verification: s?.verification,
     challenges: r.challenges ?? undefined,
     solutions: r.solutions ?? undefined,
     lessonsLearned: s?.lessonsLearned,

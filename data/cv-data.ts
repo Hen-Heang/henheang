@@ -99,8 +99,8 @@ export const cvData: CVData = {
       endDate: "Present",
       current: true,
       bullets: [
-        "Implement Java and MyBatis services and SQL queries against an Oracle database for government-facing financial systems.",
-        "Build supporting frontend pages with HTML, CSS, and JavaScript (jQuery) for internal enterprise tools.",
+        "Develop Java and MyBatis services and Oracle SQL queries for government-facing financial applications.",
+        "Build voucher administration screens with HTML, CSS, and jQuery.",
         "Maintain and improve the stability of enterprise web applications in a Korean enterprise environment.",
         "Collaborate with cross-functional teams following Korean enterprise development conventions.",
       ],
@@ -114,7 +114,7 @@ export const cvData: CVData = {
       endDate: "October 2025",
       current: false,
       bullets: [
-        "Designed and developed REST APIs with Spring Boot and MyBatis for an enterprise B2B billing platform integrated with Vietnamese banking systems.",
+        "Developed Spring Boot and MyBatis REST APIs for WeBill365, a B2B billing product with Vietnamese banking integrations.",
         "Designed PostgreSQL schemas and optimized query performance for high-volume transactions.",
         "Implemented Spring Security with JWT authentication to secure enterprise-grade APIs.",
         "Integrated Zalo, SMS, and Telegram delivery channels for transactional notifications.",
