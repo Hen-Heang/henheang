@@ -12,6 +12,7 @@ import {
     StatusIndicator,
     type StatusLevel,
 } from "@/src/components/lab/ui/StatusIndicator"
+import { setSelectedLabPath, type LabPath } from "@/src/lib/lab/learning-state"
 import { staggerContainer, staggerItem } from "@/src/lib/utils/animations"
 
 const paths = {
@@ -81,6 +82,7 @@ export function LabLearningDashboard({
                 <LearningPathCard
                     icon={ServerCog}
                     title="Backend Engineering"
+                    path="backend"
                     recommended
                     status="active"
                     outcome={paths.backend.outcome}
@@ -102,6 +104,7 @@ export function LabLearningDashboard({
                 <LearningPathCard
                     icon={Container}
                     title="DevOps for Backend"
+                    path="devops"
                     status="learning"
                     outcome={paths.devops.outcome}
                     technologies={paths.devops.technologies}
@@ -122,6 +125,7 @@ export function LabLearningDashboard({
                 <LearningPathCard
                     icon={Bot}
                     title="AX Engineering"
+                    path="ai"
                     status="experimenting"
                     outcome={paths.ax.outcome}
                     technologies={paths.ax.technologies}
@@ -136,6 +140,7 @@ export function LabLearningDashboard({
 
 function LearningPathCard({
     icon: Icon,
+    path,
     title,
     recommended,
     status,
@@ -152,6 +157,7 @@ function LearningPathCard({
         className?: string
         "aria-hidden"?: boolean
     }>
+    path: LabPath
     title: string
     recommended?: boolean
     status: StatusLevel
@@ -223,6 +229,7 @@ function LearningPathCard({
 
             <Link
                 href={href}
+                onClick={() => setSelectedLabPath(path)}
                 className="mt-5 flex min-h-11 items-center justify-between gap-3 rounded-xl border border-border bg-background px-3.5 py-2.5 text-base font-semibold text-fg transition-colors group-hover:border-border-strong"
             >
                 <span className="line-clamp-1">{action}</span>

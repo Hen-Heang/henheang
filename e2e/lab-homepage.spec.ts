@@ -38,7 +38,7 @@ test.describe("Engineering Lab homepage", () => {
 
         const applied = page.locator('section[aria-labelledby="apply-projects-heading"]')
         await expect(applied.getByRole("heading", { name: /H-Phsar/ })).toBeVisible()
-        await expect(applied.getByRole("heading", { name: /Hengo/ })).toBeVisible()
+        await expect(applied.getByRole("heading", { name: /H-Space/ })).toBeVisible()
     })
 
     test("search stays interactive and swaps only the library preview section", async ({ page }) => {

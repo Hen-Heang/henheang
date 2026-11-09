@@ -47,6 +47,8 @@ export interface Lab {
     estimatedTime: string
     prerequisites: string[]
     architecture: Diagram
+    setup?: LabStep[]
+    troubleshooting?: { symptom: string; fix: string }[]
     steps: LabStep[]
     expectedResult: string
     lessonsLearned: string[]

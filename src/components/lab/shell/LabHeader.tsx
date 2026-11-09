@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { usePathname } from "next/navigation"
+import { labs } from "@/data/lab/devops/labs"
 import { Menu, X } from "lucide-react"
 
 /** Segments that have their own index page and can be linked in the breadcrumb */
@@ -50,13 +51,21 @@ export function LabHeader({
     const base = isAILibrary ? "/ai-engineering" : "/lab"
 
     const crumbs = [
-        ...(isAILibrary ? [{ label: "AI Library", href: base as string | null }] : []),
+        ...(isAILibrary
+            ? [{ label: "AI Library", href: base as string | null }]
+            : []),
         ...segments.map((seg, i) => {
             const href = `${base}/${segments.slice(0, i + 1).join("/")}`
-            if (isAILibrary && seg === "articles") return { label: "Articles", href: null }
+            if (isAILibrary && seg === "articles")
+                return { label: "Articles", href: null }
             if (LINKABLE[seg]) return { label: LINKABLE[seg], href }
             if (UNLINKABLE[seg]) return { label: UNLINKABLE[seg], href: null }
-            return { label: slugToTitle(seg), href: null }
+            return {
+                label:
+                    labs.find((lab) => lab.slug === seg)?.title ??
+                    slugToTitle(seg),
+                href: null,
+            }
         }),
     ]
 
@@ -71,22 +80,40 @@ export function LabHeader({
                     aria-expanded={menuOpen}
                     className="flex h-11 w-11 items-center justify-center rounded-lg border border-border text-fg-secondary transition-colors hover:border-border-strong hover:text-fg lg:hidden"
                 >
-                    {menuOpen ? <X size={16} aria-hidden="true" /> : <Menu size={16} aria-hidden="true" />}
+                    {menuOpen ? (
+                        <X size={16} aria-hidden="true" />
+                    ) : (
+                        <Menu size={16} aria-hidden="true" />
+                    )}
                 </button>
 
-                <nav aria-label="Breadcrumb" className="flex min-w-0 items-center gap-1.5 font-mono text-base lg:text-sm text-fg-muted">
-                    <Link href="/lab" className="shrink-0 hover:text-fg transition-colors">
+                <nav
+                    aria-label="Breadcrumb"
+                    className="flex min-w-0 items-center gap-1.5 font-mono text-base text-fg-muted lg:text-sm"
+                >
+                    <Link
+                        href="/lab"
+                        className="shrink-0 transition-colors hover:text-fg"
+                    >
                         lab
                     </Link>
                     {crumbs.map((crumb, i) => (
-                        <span key={i} className="flex min-w-0 items-center gap-1.5">
+                        <span
+                            key={i}
+                            className="flex min-w-0 items-center gap-1.5 first:shrink-0"
+                        >
                             <span className="text-border-strong">/</span>
                             {crumb.href && i < crumbs.length - 1 ? (
-                                <Link href={crumb.href} className="shrink-0 hover:text-fg transition-colors">
-                                    {crumb.label.toLowerCase()}
+                                <Link
+                                    href={crumb.href}
+                                    className="shrink-0 transition-colors hover:text-fg"
+                                >
+                                    {crumb.label}
                                 </Link>
                             ) : (
-                                <span className="truncate text-fg-secondary">{crumb.label.toLowerCase()}</span>
+                                <span className="truncate text-fg-secondary">
+                                    {crumb.label}
+                                </span>
                             )}
                         </span>
                     ))}
@@ -94,7 +121,7 @@ export function LabHeader({
             </div>
 
             <div className="flex shrink-0 items-center gap-4">
-                <span className="hidden items-center gap-1.5 font-mono text-sm lg:text-xs text-fg-muted sm:flex">
+                <span className="hidden items-center gap-1.5 font-mono text-sm text-fg-muted sm:flex lg:text-xs">
                     <span className="relative flex h-2 w-2" aria-hidden="true">
                         <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-60" />
                         <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
@@ -103,7 +130,7 @@ export function LabHeader({
                 </span>
                 <Link
                     href="/"
-                    className="rounded-lg border border-border px-2.5 py-1 font-mono text-sm lg:text-xs text-fg-secondary hover:border-border-strong hover:text-fg transition-colors"
+                    className="rounded-lg border border-border px-2.5 py-1 font-mono text-sm text-fg-secondary transition-colors hover:border-border-strong hover:text-fg lg:text-xs"
                 >
                     exit lab
                 </Link>
