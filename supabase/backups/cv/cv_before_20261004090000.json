@@ -1,0 +1,229 @@
+{
+  "table": "public.portfolio_site_content",
+  "key": "cv",
+  "project": "money-flow (lqjjabfmaweztxkvfrsq)",
+  "captured_before_migration": "20261004090000",
+  "row_updated_at": "2026-11-15 13:56:18.797406+00",
+  "data": {
+    "education": [
+      {
+        "degree": "Bachelor of Computer Science",
+        "description": "Focused on software development, algorithms, and web technologies.",
+        "endDate": "May 2024",
+        "school": "Royal University of Phnom Penh",
+        "startDate": "March 2020"
+      },
+      {
+        "degree": "Full-Stack & Mobile Development Training",
+        "description": "Intensive training in full-stack development and Android application development using Java and Kotlin.",
+        "endDate": "April 2024",
+        "school": "Korea Software HRD Center",
+        "startDate": "July 2023"
+      },
+      {
+        "degree": "Basic C++ Programming Certificate",
+        "description": "Introduction to programming concepts and problem solving with C++.",
+        "endDate": "July 2021",
+        "school": "ANT Technology Training Center",
+        "startDate": "March 2021"
+      }
+    ],
+    "experience": [
+      {
+        "bullets": [
+          "Maintain and develop enterprise financial applications for government agencies and corporate clients (Bizplay, Webcash Group).",
+          "Implement Java and MyBatis business logic and write Oracle SQL queries.",
+          "Develop and maintain enterprise web interfaces, including voucher administration screens built with HTML, CSS, and jQuery.",
+          "Analyze technical requirements and system design before implementation.",
+          "Use AI coding assistants for code analysis, implementation, troubleshooting, and review preparation, while owning the correctness of each change.",
+          "Collaborate with development teams and follow established coding standards."
+        ],
+        "company": "Bizplay",
+        "current": true,
+        "endDate": "Present",
+        "location": "Seoul, South Korea",
+        "stack": [
+          "Java",
+          "MyBatis",
+          "Oracle",
+          "JavaScript",
+          "jQuery",
+          "HTML/CSS"
+        ],
+        "startDate": "October 2025",
+        "title": "Software Engineer – Backend & AI-Assisted Development"
+      },
+      {
+        "bullets": [
+          "Developed Spring Boot and MyBatis REST APIs for WeBill365, a B2B billing product with Vietnamese banking integrations.",
+          "Designed PostgreSQL schemas and optimized query performance for high-volume transactions.",
+          "Implemented Spring Security with JWT authentication to secure enterprise-grade APIs.",
+          "Integrated Zalo, SMS, and Telegram delivery channels for transactional notifications.",
+          "Collaborated daily with Korean development teams on architecture design and code reviews."
+        ],
+        "company": "KOSIGN (Korea Software Innovation Global Network)",
+        "current": false,
+        "endDate": "October 2025",
+        "location": "Phnom Penh, Cambodia",
+        "stack": [
+          "Java 8+",
+          "Spring Boot",
+          "Spring Security",
+          "PostgreSQL",
+          "MyBatis",
+          "Next.js",
+          "TypeScript"
+        ],
+        "startDate": "January 2024",
+        "title": "Software Engineer"
+      }
+    ],
+    "languages": [
+      {
+        "level": "Native",
+        "name": "Khmer"
+      },
+      {
+        "level": "Professional working proficiency",
+        "name": "English"
+      },
+      {
+        "level": "Elementary conversational",
+        "name": "Korean"
+      }
+    ],
+    "personal": {
+      "email": "henheang15@gmail.com",
+      "github": "https://github.com/Hen-Heang",
+      "linkedin": "https://www.linkedin.com/in/hen-heang",
+      "location": "Seoul, South Korea",
+      "name": "Hen Heang",
+      "photo": "/image/heang_new.jpeg",
+      "portfolio": "https://henheang.site",
+      "subtitle": "Java · Spring Boot · MyBatis · PostgreSQL · Oracle · AI-Assisted Development",
+      "title": "Software Engineer – Backend & AI-Assisted Development"
+    },
+    "projects": [
+      {
+        "bullets": [
+          "Designed the data model for stores, product catalogs, and carts, and implemented an order state machine with OTP-based verification.",
+          "Delivered real-time order notifications over WebSocket."
+        ],
+        "caseStudy": "/projects/h-phsar",
+        "category": "Backend API",
+        "description": "Backend API for a B2B marketplace connecting distributors and retailers, built on Spring Boot 3 and PostgreSQL.",
+        "featured": true,
+        "github": "https://github.com/Hen-Heang/h-phsar-api",
+        "live": null,
+        "name": "H-Phsar",
+        "technologies": [
+          "Spring Boot 3",
+          "Java 17",
+          "MyBatis",
+          "PostgreSQL",
+          "WebSocket"
+        ]
+      },
+      {
+        "bullets": [
+          "Implemented budgeting, savings-goal, and recurring-transaction logic behind Postgres row-level security.",
+          "Added an AI chat endpoint over Google Gemini for spending insights and web-push budget alerts."
+        ],
+        "caseStudy": "/projects/money-flow",
+        "category": "Backend API",
+        "description": "Personal finance API and PWA on Supabase Postgres with row-level security, backed up daily to Neon.",
+        "featured": true,
+        "github": "https://github.com/Hen-Heang/money-flow",
+        "live": "https://money-flow.henheang.site/",
+        "name": "Money Flow",
+        "technologies": [
+          "Next.js",
+          "TypeScript",
+          "Supabase",
+          "Google Gemini",
+          "Web Push"
+        ]
+      },
+      {
+        "bullets": [
+          "Built Today’s Mission, spaced-repetition learning, interview preparation, and progress tracking in one workspace.",
+          "Kept data behind Supabase RLS and routed authenticated AI work through thin Next.js handlers."
+        ],
+        "caseStudy": "/projects/hengo",
+        "category": "Full-Stack App",
+        "description": "AI-powered workplace Korean and growth platform on Next.js, Supabase Auth/Postgres with RLS, and JWT-verified AI routes.",
+        "featured": false,
+        "github": "https://github.com/Hen-Heang/hengo",
+        "live": "https://koriai-frontend.vercel.app/",
+        "name": "Hengo",
+        "technologies": [
+          "Next.js 16",
+          "TypeScript",
+          "Supabase",
+          "Vercel AI SDK",
+          "OpenAI"
+        ]
+      }
+    ],
+    "skills": [
+      {
+        "category": "Backend",
+        "items": [
+          "Java",
+          "Spring Boot",
+          "MyBatis",
+          "Spring Security",
+          "REST APIs",
+          "Maven"
+        ]
+      },
+      {
+        "category": "Database",
+        "items": [
+          "PostgreSQL",
+          "Oracle",
+          "MySQL",
+          "SQL Optimization",
+          "Schema Design"
+        ]
+      },
+      {
+        "category": "AI & Developer Productivity",
+        "items": [
+          "Claude Code",
+          "Codex",
+          "Google Gemini API",
+          "OpenAI API",
+          "LLM Integration",
+          "Prompt Design",
+          "AI-Assisted Code Review"
+        ]
+      },
+      {
+        "category": "Frontend",
+        "items": [
+          "Next.js",
+          "React",
+          "TypeScript",
+          "JavaScript",
+          "jQuery",
+          "Tailwind CSS"
+        ]
+      },
+      {
+        "category": "Tools & Delivery",
+        "items": [
+          "Git",
+          "GitHub",
+          "IntelliJ IDEA",
+          "WebStorm",
+          "Postman",
+          "Swagger",
+          "Vercel",
+          "Railway"
+        ]
+      }
+    ],
+    "summary": "Software Engineer focused on backend systems and AI-assisted development, with 2+ years of experience building Java and Spring Boot applications in Cambodian and Korean enterprise environments. Currently maintaining and developing enterprise financial applications at Bizplay (Webcash Group) with Java, MyBatis, and Oracle SQL. Experienced in REST APIs, Spring Security, PostgreSQL, and SQL-driven business logic for financial and B2B platforms. I use AI coding assistants such as Claude Code and Codex for requirement analysis, codebase exploration, debugging, SQL analysis, test preparation, and review, and I remain responsible for verifying every change. I am learning Agent Harness, MCP, and evaluation concepts through structured practice; these are growth areas, not production experience."
+  }
+}
