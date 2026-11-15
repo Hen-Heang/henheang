@@ -29,7 +29,7 @@ describe("Hengo technology accuracy", () => {
 
 describe("project classification — professional work vs. personal projects vs. learning labs", () => {
     it("labels every project section with an explicit Type: line matching its ownership", () => {
-        for (const project of staticProjects) {
+        for (const project of staticProjects.filter((p) => !p.hidden)) {
             const section = projectsKnowledge.find((s) => s.id === `project-${project.slug}`)
             expect(section, `missing section for ${project.slug}`).toBeDefined()
             if (project.ownership) {
@@ -42,5 +42,26 @@ describe("project classification — professional work vs. personal projects vs.
         const catalog = projectsKnowledge.find((s) => s.id === "projects-catalog")
         expect(catalog?.content).toContain("VSTV Agent")
         expect(catalog?.content).toContain("(Personal Project)")
+    })
+})
+
+describe("hidden projects", () => {
+    it("never becomes a knowledge section or a catalog entry", () => {
+        const visible = staticProjects.find((p) => !p.hidden)!
+        const hiddenProject = { ...visible, slug: "secret-project", title: "Secret Project — Unlisted", hidden: true }
+        const sections = buildProjectsKnowledge([visible, hiddenProject])
+
+        expect(sections.some((s) => s.id === "project-secret-project")).toBe(false)
+        expect(sections.some((s) => s.id === `project-${visible.slug}`)).toBe(true)
+        const catalog = sections.find((s) => s.id === "projects-catalog")
+        expect(catalog?.content).not.toContain("Secret Project")
+    })
+
+    it("keeps every hidden static project out of the static knowledge base", () => {
+        const text = JSON.stringify(projectsKnowledge)
+        for (const project of staticProjects.filter((p) => p.hidden)) {
+            expect(projectsKnowledge.some((s) => s.id === `project-${project.slug}`)).toBe(false)
+            expect(text).not.toContain(project.title.split(" — ")[0])
+        }
     })
 })

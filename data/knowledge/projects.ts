@@ -12,7 +12,11 @@ import type { KnowledgeSection } from "./types"
  * the fallback when the database is unavailable. DB rows only cover a subset
  * of the case-study fields, so every rich field is optional here.
  */
-export function buildProjectsKnowledge(projects: Project[]): KnowledgeSection[] {
+export function buildProjectsKnowledge(allProjects: Project[]): KnowledgeSection[] {
+    // Hidden projects are unlisted on the site (see getProjects in
+    // src/lib/db/portfolio.ts), so the assistant must not surface them either —
+    // not as a section, and not in the catalog below.
+    const projects = allProjects.filter((project) => !project.hidden)
     const projectSections: KnowledgeSection[] = projects.map((project) => ({
         id: `project-${project.slug}`,
         category: "projects",
