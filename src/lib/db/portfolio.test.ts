@@ -31,6 +31,20 @@ describe("portfolio repository — Supabase-absent fallback", () => {
         expect(result.length).toBeGreaterThan(0)
     })
 
+    it("upgrades a legacy Hengo row while keeping its public slug", async () => {
+        mockGetSupabaseClient.mockReturnValue({ from: () => fromChain({ data: [{ slug: "hengo", title: "Hengo — Focused Korean Learning Platform", description: "Old description", technologies: ["Next.js"], image: "/old.svg", github: "https://github.com/Hen-Heang/hengo" }], error: null }) })
+        const { getProjects } = await import("./portfolio")
+        const result = await getProjects()
+        expect(result).toHaveLength(1)
+        expect(result[0]).toMatchObject({ slug: "hengo", title: "H-Space — Personal Software Ecosystem", github: "https://github.com/Hen-Heang/h-space" })
+    })
+
+    it("preserves later custom titles from the admin", async () => {
+        mockGetSupabaseClient.mockReturnValue({ from: () => fromChain({ data: [{ slug: "hengo", title: "My custom ecosystem", description: "Custom description", technologies: ["Next.js"], image: "/old.svg" }], error: null }) })
+        const { getProjects } = await import("./portfolio")
+        expect((await getProjects())[0]).toMatchObject({ title: "My custom ecosystem", description: "Custom description" })
+    })
+
     it("getProjectBySlug falls back to a static project by slug, and returns null for an unknown slug", async () => {
         mockGetSupabaseClient.mockReturnValue(null)
         const { getProjectBySlug } = await import("./portfolio")

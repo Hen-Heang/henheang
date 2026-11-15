@@ -12,6 +12,11 @@ import {
     computeContinueLearning,
     type ContinueLearningItem,
 } from "@/src/lib/lab/continue-learning"
+import { labs } from "@/data/lab/devops/labs"
+import {
+    useAllDevOpsLabSteps,
+    countCompletedLabSteps,
+} from "@/src/lib/lab/devops-step-progress"
 import { BorderBeam } from "@/src/components/ui/border-beam"
 import { subtleDuration, subtleEase } from "@/src/lib/utils/animations"
 
@@ -47,6 +52,10 @@ export function ContinueLearning({
     const backendProgress = useBackendProgress()
     const devopsProgress = useDevOpsProgress()
     const state = useLabLearningState()
+    const labSteps = useAllDevOpsLabSteps()
+    const lastLab = labs.find(
+        (lab) => `devops-lab:${lab.slug}` === state.lastVisitedItemId,
+    )
 
     const publishedBackend = backendItems.filter(
         (item) => item.status === "published",
@@ -79,16 +88,28 @@ export function ContinueLearning({
                   (topic) => topic.slug === state.lastVisitedItemId,
               )
             : undefined
-    const lastVisitedItem = lastVisitedBackend
-        ? backendToItem(lastVisitedBackend)
-        : lastVisitedDevOps
-          ? devopsToItem(lastVisitedDevOps)
-          : undefined
-    const lastVisitedCompleted = lastVisitedBackend
-        ? backendProgress.has(lastVisitedBackend.id)
-        : lastVisitedDevOps
-          ? devopsProgress.has(lastVisitedDevOps.slug)
-          : false
+    const lastVisitedItem = lastLab
+        ? {
+              id: `devops-lab:${lastLab.slug}`,
+              title: lastLab.title,
+              href: `/lab/devops/labs/${lastLab.slug}`,
+              metaLabel: "DevOps hands-on lab",
+          }
+        : lastVisitedBackend
+          ? backendToItem(lastVisitedBackend)
+          : lastVisitedDevOps
+            ? devopsToItem(lastVisitedDevOps)
+            : undefined
+    const lastVisitedCompleted = lastLab
+        ? countCompletedLabSteps(
+              labSteps[lastLab.slug],
+              lastLab.steps.length,
+          ) === lastLab.steps.length
+        : lastVisitedBackend
+          ? backendProgress.has(lastVisitedBackend.id)
+          : lastVisitedDevOps
+            ? devopsProgress.has(lastVisitedDevOps.slug)
+            : false
 
     const result = computeContinueLearning({
         nextBackend: nextBackendRaw ? backendToItem(nextBackendRaw) : undefined,
@@ -177,7 +198,12 @@ export function ContinueLearning({
         )
     }
 
-    const { item, completed, total, roadmapHref } = result
+    const { item, roadmapHref } = result
+    const continuingLab = lastLab && result.source === "last-visited"
+    const completed = continuingLab
+        ? countCompletedLabSteps(labSteps[lastLab.slug], lastLab.steps.length)
+        : result.completed
+    const total = continuingLab ? lastLab.steps.length : result.total
     const percent = total > 0 ? Math.round((completed / total) * 100) : 0
 
     return (
@@ -188,7 +214,11 @@ export function ContinueLearning({
         >
             <BorderBeam size={80} duration={9} />
             <p className="font-mono text-sm font-semibold uppercase tracking-[0.18em] text-brand">
-                Continue learning
+                {result.source === "next-in-path" &&
+                !state.selectedPath &&
+                completed === 0
+                    ? "Recommended next lesson"
+                    : "Continue learning"}
             </p>
             <h2
                 id="continue-learning-heading"
@@ -205,7 +235,8 @@ export function ContinueLearning({
                 <div className="mt-4 max-w-sm">
                     <div className="mb-1.5 flex items-center justify-between font-mono text-[11px] text-fg-muted">
                         <span>
-                            {completed} of {total} lessons completed
+                            {completed} of {total}{" "}
+                            {continuingLab ? "steps" : "lessons"} completed
                         </span>
                         <span>{percent}%</span>
                     </div>
@@ -229,7 +260,8 @@ export function ContinueLearning({
                     href={item.href}
                     className="group inline-flex min-h-11 items-center gap-2 rounded-xl bg-gradient-brand px-4 py-2.5 text-base font-semibold text-white transition-all duration-200 hover:-translate-y-0.5 hover:brightness-110 active:translate-y-0 motion-reduce:hover:translate-y-0"
                 >
-                    <PlayCircle size={16} aria-hidden="true" /> Continue lesson{" "}
+                    <PlayCircle size={16} aria-hidden="true" />{" "}
+                    {continuingLab ? "Continue lab" : "Continue lesson"}{" "}
                     <ArrowRight
                         size={14}
                         aria-hidden="true"

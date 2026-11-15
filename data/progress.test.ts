@@ -20,7 +20,7 @@ describe("current portfolio progress", () => {
 
     it("shows the four active projects requested for the journey", () => {
         expect(activeProjects.map((project) => project.name)).toEqual([
-            "Hengo",
+            "H-Space",
             "AuthHub",
             "Developer Portfolio",
             "Luyra",

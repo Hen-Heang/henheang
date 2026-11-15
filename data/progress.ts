@@ -117,9 +117,9 @@ export const progressItems: ProgressItem[] = [
 export const activeProjects: ActiveProject[] = [
     {
         id: "hengo",
-        name: "Hengo",
+        name: "H-Space",
         description:
-            "A focused AI-assisted Korean learning platform for engineers and international professionals living and working in Korea.",
+            "My personal application hub for learning, finance, productivity, and engineering, preserving Hengo Learning.",
         status: "Building",
         href: "/projects/hengo",
         technologies: ["Next.js", "Supabase", "OpenAI", "Vercel AI SDK"],
