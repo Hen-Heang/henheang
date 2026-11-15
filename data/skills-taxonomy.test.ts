@@ -20,6 +20,15 @@ describe("skills taxonomy", () => {
         }
     })
 
+    it("never cites a hidden (unlisted) project as evidence in a description", () => {
+        const hiddenNames = projects.filter((p) => p.hidden).map((p) => p.title.split(" — ")[0])
+        for (const skill of skills) {
+            for (const name of hiddenNames) {
+                expect(skill.description ?? "", `${skill.id} mentions ${name}`).not.toContain(name)
+            }
+        }
+    })
+
     it("never uses expert/advanced language for a skill still being learned", () => {
         const learning = skills.filter((s) => s.status === "learning")
         expect(learning.length).toBeGreaterThan(0)

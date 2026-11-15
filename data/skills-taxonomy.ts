@@ -67,7 +67,7 @@ const skillDefinitions: SkillDefinition[] = [
     { id: "oracle", name: "Oracle", category: "database", status: "primary", description: "Primary database in his current professional work at Bizplay and prior role at KOSIGN." },
     { id: "sql", name: "SQL", category: "database", status: "primary", description: "Writes and optimizes SQL across PostgreSQL and Oracle." },
     { id: "flyway", name: "Flyway", category: "database", status: "primary", description: "Owns schema migrations with versioned Flyway scripts in H-Phsar and AuthHub." },
-    { id: "spring-data-jpa", name: "Spring Data JPA", category: "database", status: "primary", description: "Persistence layer in We Commerce and AuthHub, alongside MyBatis on his other Spring Boot projects." },
+    { id: "spring-data-jpa", name: "Spring Data JPA", category: "database", status: "primary", description: "Persistence layer in AuthHub, alongside MyBatis on his other Spring Boot projects." },
     { id: "mysql", name: "MySQL", category: "database", status: "working-knowledge", description: "Used in earlier practice work; not a current primary database." },
     { id: "redis", name: "Redis", category: "database", status: "learning", description: "A planned caching module in the Backend Engineering Lab roadmap; appears as a listed skill tag but hasn't been used in a shipped project yet." },
 
@@ -78,7 +78,7 @@ const skillDefinitions: SkillDefinition[] = [
     { id: "javascript", name: "JavaScript", category: "frontend", status: "primary", description: "Used daily in his current role building frontend pages at Bizplay." },
     { id: "jquery", name: "jQuery", category: "frontend", status: "primary", description: "Used daily in his current role and at KOSIGN for enterprise frontend work." },
     { id: "react", name: "React", category: "frontend", status: "working-knowledge", description: "Used directly in Hengo; Next.js (not raw React) is his primary frontend framework." },
-    { id: "tailwind-css", name: "Tailwind CSS", category: "frontend", status: "working-knowledge", description: "Used for styling in We Commerce's storefront." },
+    { id: "tailwind-css", name: "Tailwind CSS", category: "frontend", status: "working-knowledge", description: "Used for styling in H-Space and VSTV Agent." },
     { id: "html", name: "HTML", category: "frontend", status: "working-knowledge", description: "Used for frontend pages in his current enterprise role; documented per-project rather than claimed as a core skill." },
     { id: "css", name: "CSS", category: "frontend", status: "working-knowledge", description: "Used for frontend pages in his current enterprise role; documented per-project rather than claimed as a core skill." },
     { id: "bootstrap", name: "Bootstrap", category: "frontend", status: "working-knowledge", description: "Used in earlier practice and enterprise frontend work." },

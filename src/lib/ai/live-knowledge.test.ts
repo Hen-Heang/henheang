@@ -95,7 +95,9 @@ describe("getLiveKnowledgeBase", () => {
         const sections = await getLiveKnowledgeBase()
 
         for (const project of staticProjects) {
-            expect(sections.some((s) => s.id === `project-${project.slug}`), `missing static project ${project.slug}`).toBe(true)
+            // Hidden projects are unlisted on the site, so the fallback must leave them out too.
+            const present = sections.some((s) => s.id === `project-${project.slug}`)
+            expect(present, `${project.hidden ? "hidden" : "missing static"} project ${project.slug}`).toBe(!project.hidden)
         }
         // KOSIGN only exists in the static experience data — proves the experience fallback engaged too.
         const workHistory = sections.find((s) => s.id === "experience-work-history")

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest"
 import { portfolioTools } from "./index"
 import { experiences } from "@/data/experience"
+import { projects as staticProjects } from "@/data/projects"
 
 /** Minimal ToolExecutionOptions — these tools ignore all of it, but the AI SDK's `execute` signature requires it. */
 const opts = { toolCallId: "test", messages: [], context: undefined }
@@ -69,6 +70,28 @@ describe("getProject tool", () => {
 
     it("returns an error for an unknown slug instead of inventing a project", async () => {
         const result = await run<{ error?: string }>(portfolioTools.getProject, { slug: "does-not-exist" })
+        expect(result.error).toMatch(/no project found/i)
+    })
+})
+
+describe("hidden projects", () => {
+    // Projects marked `hidden` are unlisted on the site, so the assistant's
+    // tools must never return them — not by name, technology, or slug.
+    const hidden = staticProjects.filter((p) => p.hidden)
+
+    it.each(hidden.map((p) => [p.slug, p.title.split(" — ")[0]]))(
+        "never returns %s from searchProjects, even when searched by name",
+        async (slug, name) => {
+            for (const query of [name, slug, "Spring Boot", "marketplace"]) {
+                const result = await run<{ projects: { slug: string }[] }>(portfolioTools.searchProjects, { query })
+                expect(result.projects.map((p) => p.slug), `query "${query}"`).not.toContain(slug)
+            }
+        },
+    )
+
+    it.each(hidden.map((p) => [p.slug]))("getProject treats %s as unknown", async (slug) => {
+        const result = await run<{ error?: string; slug?: string }>(portfolioTools.getProject, { slug })
+        expect(result.slug).toBeUndefined()
         expect(result.error).toMatch(/no project found/i)
     })
 })

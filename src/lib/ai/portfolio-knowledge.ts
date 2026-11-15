@@ -1,7 +1,7 @@
 import "server-only"
 
 import { profileData } from "@/data/profile"
-import { projects } from "@/data/projects"
+import { projects as allProjects } from "@/data/projects"
 import { experiences } from "@/data/experience"
 import { education } from "@/data/education"
 import { skills } from "@/data/skills-taxonomy"
@@ -17,6 +17,11 @@ import type { EducationItem, ExperienceItem, Project } from "@/src/lib/types"
  * portfolio-knowledge -> AI tools -> assistant. No embeddings, no vector
  * search, no second database.
  */
+
+// Hidden projects are unlisted on the site, so the assistant's tools must not
+// return them either — searchProjects, getProject, and skill evidence all read
+// through this list.
+const projects: Project[] = allProjects.filter((project) => !project.hidden)
 
 export function getProfile() {
     return profileData
