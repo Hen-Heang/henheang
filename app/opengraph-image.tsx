@@ -1,8 +1,9 @@
 import { ImageResponse } from "next/og"
 import { readFileSync } from "fs"
 import { join } from "path"
+import { positioning } from "@/src/lib/content/positioning"
 
-export const alt = "Hen Heang — Backend / AX Software Engineer"
+export const alt = `Hen Heang — ${positioning.headline}`
 export const size = { width: 1200, height: 630 }
 export const contentType = "image/png"
 
@@ -10,7 +11,7 @@ const TECH = [
     { label: "Java",        color: "#f89820" },
     { label: "Spring Boot", color: "#6db33f" },
     { label: "PostgreSQL",  color: "#60a5fa" },
-    { label: "MyBatis",     color: "#22d3ee" },
+    { label: "MyBatis",     color: "#93c5fd" },
     { label: "REST APIs",   color: "#e4e4e7" },
 ]
 
@@ -22,7 +23,7 @@ export default async function Image() {
         (
             <div style={{
                 width: 1200, height: 630,
-                backgroundColor: "#09090b",
+                backgroundColor: "#070b14",
                 display: "flex", position: "relative", overflow: "hidden",
                 fontFamily: "system-ui, -apple-system, sans-serif",
             }}>
@@ -30,13 +31,13 @@ export default async function Image() {
                 <div style={{
                     position: "absolute", top: -120, left: -80,
                     width: 520, height: 520, borderRadius: "50%",
-                    background: "radial-gradient(circle, rgba(34,211,238,0.18) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(29,78,216,0.28) 0%, transparent 70%)",
                 }} />
                 {/* Blob BR */}
                 <div style={{
                     position: "absolute", bottom: -80, right: 340,
                     width: 380, height: 380, borderRadius: "50%",
-                    background: "radial-gradient(circle, rgba(6,182,212,0.12) 0%, transparent 70%)",
+                    background: "radial-gradient(circle, rgba(59,130,246,0.14) 0%, transparent 70%)",
                 }} />
 
                 {/* Left: content column */}
@@ -47,8 +48,8 @@ export default async function Image() {
                     {/* Available badge */}
                     <div style={{
                         display: "flex", alignItems: "center", gap: 8,
-                        backgroundColor: "rgba(34,211,238,0.12)",
-                        border: "1px solid rgba(34,211,238,0.28)",
+                        backgroundColor: "rgba(59,130,246,0.12)",
+                        border: "1px solid rgba(96,165,250,0.32)",
                         borderRadius: 100, padding: "7px 18px",
                         alignSelf: "flex-start", marginBottom: 28,
                     }}>
@@ -57,7 +58,7 @@ export default async function Image() {
                             backgroundColor: "#22c55e",
                         }} />
                         <span style={{
-                            color: "#22d3ee", fontSize: 13, fontWeight: 800,
+                            color: "#93c5fd", fontSize: 13, fontWeight: 800,
                             letterSpacing: "0.15em", textTransform: "uppercase",
                         }}>
                             Available for hire
@@ -75,11 +76,18 @@ export default async function Image() {
 
                     {/* Title */}
                     <div style={{
-                        color: "#a1a1aa", fontSize: 26, fontWeight: 500,
+                        color: "#e4e4e7", fontSize: 30, fontWeight: 600,
+                        marginBottom: 8, letterSpacing: "-0.01em",
+                        display: "flex",
+                    }}>
+                        {positioning.title}
+                    </div>
+                    <div style={{
+                        color: "#60a5fa", fontSize: 24, fontWeight: 600,
                         marginBottom: 36, letterSpacing: "-0.01em",
                         display: "flex",
                     }}>
-                        Backend / AX Software Engineer
+                        {positioning.specialization}
                     </div>
 
                     {/* Tech pills */}
@@ -116,7 +124,7 @@ export default async function Image() {
                             width: 4, height: 4, borderRadius: "50%",
                             backgroundColor: "#3f3f46",
                         }} />
-                        <span style={{ color: "#22d3ee", fontWeight: 700, display: "flex" }}>
+                        <span style={{ color: "#60a5fa", fontWeight: 700, display: "flex" }}>
                             henheang.site
                         </span>
                     </div>
@@ -131,7 +139,7 @@ export default async function Image() {
                     <div style={{
                         display: "flex", alignItems: "center", justifyContent: "center",
                         width: 294, height: 294, borderRadius: 36,
-                        background: "linear-gradient(135deg, #0e7490 0%, #06b6d4 50%, #67e8f9 100%)",
+                        background: "linear-gradient(135deg, #102a4c 0%, #1d4ed8 50%, #60a5fa 100%)",
                         padding: 3,
                     }}>
                         {/* Photo container */}
@@ -139,7 +147,7 @@ export default async function Image() {
                             display: "flex",
                             width: "100%", height: "100%",
                             borderRadius: 32, overflow: "hidden",
-                            backgroundColor: "#18181b",
+                            backgroundColor: "#0b1f3a",
                         }}>
                             <img
                                 src={photo}
@@ -156,7 +164,7 @@ export default async function Image() {
                 {/* Bottom gradient strip */}
                 <div style={{
                     position: "absolute", bottom: 0, left: 0, right: 0, height: 3,
-                    background: "linear-gradient(90deg, #0e7490 0%, #06b6d4 50%, #67e8f9 100%)",
+                    background: "linear-gradient(90deg, #102a4c 0%, #1d4ed8 50%, #60a5fa 100%)",
                 }} />
             </div>
         ),

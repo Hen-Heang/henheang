@@ -77,7 +77,7 @@ export type SkillGroup = {
 export const cvData: CVData = {
   personal: {
     name: profileData.fullName,
-    title: "Backend / AX Software Engineer",
+    title: "Software Engineer – Backend & AI-Assisted Development",
     subtitle: "Java · Spring Boot · MyBatis · PostgreSQL · Oracle · AI-Assisted Development",
     photo: profileData.myImage,
     location: profileData.location,
@@ -88,21 +88,23 @@ export const cvData: CVData = {
   } satisfies PersonalInfo,
 
   summary:
-    "Backend / AX Software Engineer with 2+ years of experience building Java and Spring Boot applications in Cambodian and Korean enterprise environments. Experienced in REST APIs, MyBatis, Spring Security, PostgreSQL, Oracle, and SQL-driven business logic for financial and B2B platforms. I have integrated practical LLM-powered product features and use Claude Code and Codex for AI-assisted planning, analysis, implementation, review, testing, and documentation. I am learning Agent Harness, MCP, guardrail, evaluation, and observability concepts through structured practice; these are growth areas, not claims of production-scale agent infrastructure experience.",
+    "Software Engineer focused on backend systems and AI-assisted development, with 2+ years of experience building Java and Spring Boot applications in Cambodian and Korean enterprise environments. Currently maintaining and developing enterprise financial applications at Bizplay (Webcash Group) with Java, MyBatis, and Oracle SQL. Experienced in REST APIs, Spring Security, PostgreSQL, and SQL-driven business logic for financial and B2B platforms. I use AI coding assistants such as Claude Code and Codex for requirement analysis, codebase exploration, debugging, SQL analysis, test preparation, and review, and I remain responsible for verifying every change. I am learning Agent Harness, MCP, and evaluation concepts through structured practice; these are growth areas, not production experience.",
 
   experience: [
     {
       company: "Bizplay",
-      title: "Backend Developer (Java & Spring Boot)",
+      title: "Software Engineer – Backend & AI-Assisted Development",
       location: "Seoul, South Korea",
       startDate: "October 2025",
       endDate: "Present",
       current: true,
       bullets: [
-        "Develop Java and MyBatis services and Oracle SQL queries for government-facing financial applications.",
-        "Build voucher administration screens with HTML, CSS, and jQuery.",
-        "Maintain and improve the stability of enterprise web applications in a Korean enterprise environment.",
-        "Collaborate with cross-functional teams following Korean enterprise development conventions.",
+        "Maintain and develop enterprise financial applications for government agencies and corporate clients (Bizplay, Webcash Group).",
+        "Implement Java and MyBatis business logic and write Oracle SQL queries.",
+        "Develop and maintain enterprise web interfaces, including voucher administration screens built with HTML, CSS, and jQuery.",
+        "Analyze technical requirements and system design before implementation.",
+        "Use AI coding assistants for code analysis, implementation, troubleshooting, and review preparation, while owning the correctness of each change.",
+        "Collaborate with development teams and follow established coding standards.",
       ],
       stack: ["Java", "MyBatis", "Oracle", "JavaScript", "jQuery", "HTML/CSS"],
     },

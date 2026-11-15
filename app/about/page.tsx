@@ -4,6 +4,8 @@ import { profileData } from "@/data/profile"
 import { PageLayout } from "@/src/components/layout/PageLayout"
 import { AboutIntro } from "@/src/components/about/AboutIntro"
 import { AboutTimeline } from "@/src/components/about/AboutTimeline"
+import { AboutCommunity } from "@/src/components/about/AboutCommunity"
+import { communityActivities } from "@/data/community"
 import { TechnicalCapabilities } from "@/src/components/capabilities/TechnicalCapabilities"
 import { ContactCTASection } from "@/src/components/home/ContactCTASection"
 import { positioning } from "@/src/lib/content/positioning"
@@ -12,7 +14,7 @@ import { positioning } from "@/src/lib/content/positioning"
 export const revalidate = 60
 
 const title = "About"
-const description = positioning.description
+const description = `${profileData.fullName} — ${positioning.headline}. ${positioning.description}`
 
 export const metadata: Metadata = {
     title,
@@ -21,7 +23,7 @@ export const metadata: Metadata = {
         canonical: `${profileData.portfolioUrl}/about`,
     },
     openGraph: {
-        title,
+        title: `About ${profileData.fullName} | ${positioning.headline}`,
         description,
         url: `${profileData.portfolioUrl}/about`,
     },
@@ -43,6 +45,7 @@ export default async function AboutPage() {
         <PageLayout>
             <AboutIntro profile={profile} />
             <AboutTimeline experience={experience} education={education} achievements={achievements} />
+            <AboutCommunity activities={communityActivities} />
             <TechnicalCapabilities projects={projects} experience={experience} variant="surface" />
             <ContactCTASection />
         </PageLayout>

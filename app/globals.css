@@ -39,10 +39,10 @@
     --fg: 240 10% 4%;
     --fg-secondary: 240 5% 32%;
     --fg-muted: 240 4% 45%;
-    --brand: 188 84% 32%; /* #0d8496 — cyan-600, darkened for AA on white */
-    --brand-hover: 188 84% 27%;
-    --brand-active: 188 77% 26%; /* #0f6875 — cyan-700, pressed state */
-    --brand-dark: 188 69% 22%; /* #11545f — cyan-800, deep accent for subtle fills */
+    --brand: 224 76% 48%; /* #1d4ed8 — blue-700, AA (6.7:1) on white */
+    --brand-hover: 226 71% 40%; /* #1e40af — blue-800 */
+    --brand-active: 224 64% 33%; /* #1e3a8a — blue-900, pressed state */
+    --brand-dark: 224 64% 33%; /* #1e3a8a — deep accent for subtle fills */
     --brand-foreground: 0 0% 100%;
     --success: 152 60% 30%;
     --warning: 32 95% 44%; /* #d97706 — amber-600, darkened for AA on white */
@@ -112,20 +112,21 @@
   }
 
   .dark {
-    --background: 240 10% 4%; /* #09090b */
-    --surface: 240 8% 7%; /* #111114 */
-    --surface-elevated: 240 6% 9%; /* #161619 */
-    --surface-hover: 240 7% 11%; /* #1b1b1f */
-    --border: 240 4% 16%; /* #27272a */
-    --border-strong: 240 5% 26%; /* #3f3f46 — border-hover stop */
+    /* Near-black with a navy undertone, matching the navy CTA/console family. */
+    --background: 222 47% 5%; /* #070b13 */
+    --surface: 222 35% 8%; /* #0d121c */
+    --surface-elevated: 222 30% 10%; /* #121825 */
+    --surface-hover: 222 26% 13%; /* #181f2d */
+    --border: 220 20% 17%; /* #23293a */
+    --border-strong: 218 15% 27%; /* #3a4251 — border-hover stop */
     --fg: 0 0% 98%; /* #fafafa */
-    --fg-secondary: 240 5% 65%; /* #a1a1aa */
-    --fg-muted: 240 4% 55%; /* raised for AA contrast on dark backgrounds */
-    --brand: 188 66% 50%; /* #2bbdd4 */
-    --brand-hover: 188 77% 64%; /* #5dd7ea */
-    --brand-active: 188 80% 40%; /* #14a2b8 */
-    --brand-dark: 188 77% 26%; /* #0f6875 */
-    --brand-foreground: 188 67% 5%; /* #041315 */
+    --fg-secondary: 218 11% 68%; /* #a5abb6 */
+    --fg-muted: 218 9% 57%; /* raised for AA contrast on dark backgrounds */
+    --brand: 213 94% 68%; /* #60a5fa — blue-400 */
+    --brand-hover: 212 96% 78%; /* #93c5fd — blue-300 */
+    --brand-active: 217 91% 60%; /* #3b82f6 — blue-500 */
+    --brand-dark: 224 76% 48%; /* #1d4ed8 — blue-700 */
+    --brand-foreground: 222 47% 7%; /* #0a0f1a */
     --success: 142 69% 58%; /* #4ade80 */
     --warning: 43 96% 56%; /* #fbbf24 */
     --error: 0 91% 71%; /* #f87171 */
@@ -144,16 +145,16 @@
     --primary: 0 0% 98%;
     --primary-foreground: 240 6% 10%;
 
-    --secondary: 240 4% 15%;
+    --secondary: 222 24% 15%;
     --secondary-foreground: 0 0% 98%;
-    --muted: 240 4% 15%;
+    --muted: 222 24% 15%;
     --muted-foreground: var(--fg-secondary);
-    --accent: 240 4% 15%;
+    --accent: 222 24% 15%;
     --accent-foreground: 0 0% 98%;
 
-    --card: 240 5% 7%;
+    --card: 222 35% 8%;
     --card-foreground: var(--fg);
-    --popover: 240 6% 4%;
+    --popover: 222 47% 5%;
     --popover-foreground: var(--fg);
 
     --destructive: 0 62.8% 30.6%;

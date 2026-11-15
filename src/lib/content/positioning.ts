@@ -10,20 +10,33 @@
  * `data/*.ts` files as its typed fallback (see src/lib/db/portfolio.ts).
  *
  * Nothing here may claim experience, metrics, or technologies that aren't
- * evidenced elsewhere in the portfolio data.
+ * evidenced elsewhere in the portfolio data. AI wording describes AI-assisted
+ * software development — not ML engineering or production agent platforms.
  */
 
 export const positioning = {
-    /** Hero H2 — the one-line role statement. */
-    title: "Backend / AX Software Engineer",
+    /** The role, on its own — hero line, About H1, JSON-LD jobTitle. */
+    title: "Software Engineer",
 
-    /** Hero lead — what he builds, in one sentence. */
+    /** What the engineering work centers on, shown beside the title. */
+    specialization: "Backend Systems & AI-Assisted Development",
+
+    /**
+     * Full professional title, matching the current Bizplay role and the
+     * LinkedIn headline. Used for page titles, the CV header, and Open Graph.
+     */
+    headline: "Software Engineer – Backend & AI-Assisted Development",
+
+    /** Core backend technologies shown on the first screen. */
+    coreStack: ["Java", "Spring Boot", "MyBatis", "PostgreSQL", "Oracle", "REST APIs"],
+
+    /** Hero lead — the value proposition, in one sentence. */
     description:
-        "Building reliable Java and Spring Boot systems while learning to make human + AI development workflows repeatable.",
+        "Building reliable backend systems with Java and Spring Boot while using AI-assisted development to improve software engineering workflows.",
 
     /** Hero supporting paragraph — the concrete scope of the work. */
     supporting:
-        "My foundation is backend engineering: enterprise APIs, business logic, and data-driven applications with Java, Spring Boot, MyBatis, PostgreSQL, and Oracle. I use AI-assisted development in practice and am building deeper understanding of Agent Harness, MCP, guardrails, and evaluations.",
+        "At Bizplay (Webcash Group) in Seoul I maintain and develop enterprise financial applications: Java and MyBatis business logic, Oracle SQL, and the web screens around them. I use AI coding assistants to explore code, debug, and prepare reviews, and I stay responsible for every change that ships.",
 
     /**
      * About narrative, as three paragraphs. Rendered on /about and reused as
@@ -31,11 +44,14 @@ export const positioning = {
      * the same story is told everywhere.
      */
     about: [
-        "I'm Hen Heang, a Cambodian software engineer currently working in South Korea. My primary foundation is backend engineering with Java, Spring Boot, MyBatis, PostgreSQL, and Oracle, supported by frontend delivery with Next.js and TypeScript.",
-        "My professional work focuses on enterprise systems, API development, and SQL-driven business logic. In personal projects, I have also integrated practical AI features and used Claude Code and Codex as development assistants.",
-        "I am growing toward Backend / AX Software Engineer through learning and practice in Agent Harness design, MCP, evaluations, DevOps, and system architecture. I care about maintainable systems, explicit decisions, verification, and software that solves real problems.",
+        "I'm Hen Heang, a Cambodian software engineer working in Seoul, South Korea. My foundation is backend engineering with Java, Spring Boot, MyBatis, PostgreSQL, and Oracle, supported by frontend delivery with Next.js, React, TypeScript, JSP, and jQuery when a product needs it.",
+        "At work I maintain and develop enterprise financial applications — business logic, SQL, and REST APIs that have to be correct. I use AI coding assistants throughout that process: analyzing requirements, exploring unfamiliar code, investigating bugs, checking SQL, preparing tests, and drafting review notes. The AI speeds up the investigation; the verification and the decision stay with me.",
+        "Outside work I build personal projects — with Claude Code and Codex as development assistants — to go deeper on backend design, authentication, and data modeling, and I am learning Agent Harness design, MCP, evaluations, and DevOps through structured labs. I care about maintainable systems, explicit decisions, and software that solves real problems.",
     ],
 } as const
 
 /** Single-paragraph form of the About narrative, for metadata and the CV summary. */
 export const aboutSummary = positioning.about.join(" ")
+
+/** "Software Engineer · Backend Systems & AI-Assisted Development" — compact one-line form. */
+export const positioningLine = `${positioning.title} · ${positioning.specialization}`

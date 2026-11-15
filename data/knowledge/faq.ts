@@ -13,7 +13,7 @@ export const faqKnowledge: KnowledgeSection[] = [
         keywords: ["faq", "relocate", "relocation", "remote", "onsite", "notice", "available", "availability", "visa", "seoul", "korea", "strength", "why", "fit", "team", "english", "korean", "backend or frontend"],
         content: [
             "**Q: Backend or full-stack?**",
-            "A: Heang is a backend-first Backend / AX Software Engineer. His verified foundation is Java, Spring Boot, MyBatis, and PostgreSQL/Oracle; AX describes his practical AI-assisted development and the agent-engineering concepts he is currently learning.",
+            "A: Heang is a backend-focused Software Engineer (Backend & AI-Assisted Development). His verified foundation is Java, Spring Boot, MyBatis, and PostgreSQL/Oracle; he uses AI-assisted development in practice and is learning agent-engineering concepts separately.",
             "",
             "**Q: Where is he based and can he work in Korea?**",
             "A: He lives and works in Seoul, South Korea, employed at Bizplay in the Korean enterprise sector.",

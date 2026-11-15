@@ -10,6 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 import { Analytics } from "@vercel/analytics/next"
 import { profileData } from "@/data/profile"
 import { getSiteContent } from "@/src/lib/db/portfolio"
+import { positioning } from "@/src/lib/content/positioning"
 import "./globals.css"
 
 // Re-render at most once a minute so admin edits show up without a redeploy.
@@ -38,15 +39,20 @@ const jetbrainsMono = localFont({
     fallback: ["ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 })
 
+// Title and description are code-owned positioning (src/lib/content/positioning.ts)
+// so search results, social cards, and the hero always say the same thing.
+const siteTitle = `${profileData.fullName} | ${positioning.headline}`
+const siteDescription = `${positioning.description} Based in ${profileData.location}.`
+
 export const metadata: Metadata = {
     metadataBase: new URL(profileData.portfolioUrl),
     title: {
-        default: `${profileData.fullName} — ${profileData.title}`,
+        default: siteTitle,
         template: `%s | ${profileData.fullName}`,
     },
-    description: profileData.description,
+    description: siteDescription,
     keywords: profileData.knowsAbout.concat([
-        profileData.title, profileData.fullName, profileData.location, profileData.company, "Portfolio",
+        positioning.title, "Backend Engineer", profileData.fullName, profileData.location, profileData.company, "Portfolio",
     ]),
     authors: [{ name: profileData.fullName, url: profileData.portfolioUrl }],
     alternates: {
@@ -61,13 +67,13 @@ export const metadata: Metadata = {
         locale: "en_US",
         url: profileData.portfolioUrl,
         siteName: `${profileData.fullName} — Portfolio`,
-        title: `${profileData.fullName} — ${profileData.title}`,
-        description: profileData.description,
+        title: siteTitle,
+        description: siteDescription,
     },
     twitter: {
         card: "summary_large_image",
-        title: `${profileData.fullName} — ${profileData.title}`,
-        description: profileData.description,
+        title: siteTitle,
+        description: siteDescription,
     },
     robots: {
         index: true,
@@ -86,7 +92,8 @@ const jsonLd = {
     "@type": "Person",
     name: profileData.fullName,
     url: profileData.portfolioUrl,
-    jobTitle: profileData.title,
+    jobTitle: positioning.title,
+    description: positioning.description,
     worksFor: { "@type": "Organization", name: profileData.company },
     address: { "@type": "PostalAddress", addressLocality: "Seoul", addressCountry: "KR" },
     email: profileData.email,

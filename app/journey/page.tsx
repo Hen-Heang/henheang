@@ -38,7 +38,7 @@ export default function JourneyPage() {
                         <SectionHeading as="h1" size="display">
                             What I’m working on
                         </SectionHeading>
-                        <p className="mt-6 max-w-2xl text-base leading-relaxed text-fg-secondary sm:text-lg">A public snapshot of the backend skills I’m deepening, the systems I’m building, and the evidence guiding my growth toward Backend / AX Software Engineer.</p>
+                        <p className="mt-6 max-w-2xl text-base leading-relaxed text-fg-secondary sm:text-lg">A public snapshot of the backend skills I’m deepening, the systems I’m building, and the evidence guiding my growth as a backend-focused software engineer.</p>
                         <time dateTime={latestUpdate} className="mt-6 block font-mono text-xs uppercase tracking-[0.14em] text-fg-muted">
                             Last updated {formatUpdatedAt(latestUpdate)}
                         </time>

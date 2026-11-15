@@ -53,10 +53,10 @@ function getEvidenceSources(group: EnrichedCapabilityGroup): EvidenceSource[] {
 
 export function CapabilityColumns({
     groups,
-    aiStatement,
+    aiPractice,
 }: {
     groups: EnrichedCapabilityGroup[]
-    aiStatement: string
+    aiPractice: ReadonlyArray<{ label: string; text: string }>
 }) {
     if (groups.length === 0) return null
 
@@ -163,13 +163,22 @@ export function CapabilityColumns({
                     <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
                         <Bot size={18} aria-hidden="true" />
                     </span>
-                    <div>
+                    <div className="min-w-0">
                         <h3 className="text-base font-semibold text-fg">
-                            AI-assisted &amp; AX Engineering
+                            AI-assisted development
                         </h3>
-                        <p className="mt-1 max-w-3xl text-sm leading-6 text-fg-secondary">
-                            {aiStatement}
-                        </p>
+                        <dl className="mt-2 max-w-3xl space-y-2 text-sm leading-6">
+                            {aiPractice.map((tier) => (
+                                <div key={tier.label} className="sm:flex sm:gap-3">
+                                    <dt className="shrink-0 font-medium text-fg sm:w-36">
+                                        {tier.label}
+                                    </dt>
+                                    <dd className="text-fg-secondary">
+                                        {tier.text}
+                                    </dd>
+                                </div>
+                            ))}
+                        </dl>
                         <Link
                             href="/lab/ax-engineering"
                             className="mt-3 inline-flex text-sm font-medium text-brand underline-offset-4 hover:underline"
