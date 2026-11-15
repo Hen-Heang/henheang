@@ -129,7 +129,9 @@ begin
     values ('req-3', 'home', 'sideways', 'abcdef0123456789abcdef01');
     raise exception 'invalid vote value should have been rejected';
   exception
-    when check_violation then
+    -- The RLS insert policy also checks the vote, so either it (42501) or the
+    -- column CHECK (23514) may reject the row first.
+    when insufficient_privilege or check_violation then
       raise notice 'OK: invalid vote value was rejected';
   end;
 end $$;
@@ -263,6 +265,6 @@ end $$;
 reset role;
 reset request.jwt.claims;
 
-raise notice 'All portfolio_ai_* verification checks passed.';
+do $$ begin raise notice 'All portfolio_ai_* verification checks passed.'; end $$;
 
 rollback;
