@@ -70,6 +70,13 @@ const navGroups: LabNavGroup[] = [
                 href: "/lab/ax-engineering",
                 icon: Sparkles,
             },
+            // Kept in the always-open group: the handbook is a primary path,
+            // and "Reference" starts collapsed.
+            {
+                label: "Agent Handbook",
+                href: "/lab/handbook",
+                icon: BookMarked,
+            },
         ],
     },
     {
@@ -96,11 +103,6 @@ const navGroups: LabNavGroup[] = [
     {
         title: "Reference",
         items: [
-            {
-                label: "Agent Handbook",
-                href: "/lab/handbook",
-                icon: BookMarked,
-            },
             {
                 label: "AI Engineering Library",
                 href: "/ai-engineering",
