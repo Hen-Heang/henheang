@@ -1,0 +1,4 @@
+-- Placeholder: migration 20260813000710 (core_tables_rls.sql) belongs to the money-flow (Luyra) app,
+-- which shares this Supabase project. It is already applied there and its SQL
+-- lives in that app's repository. Kept here only so local and remote migration
+-- history match for `supabase db push`. Intentionally contains no statements.
