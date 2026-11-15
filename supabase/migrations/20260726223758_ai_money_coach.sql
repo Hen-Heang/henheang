@@ -1,0 +1,4 @@
+-- Placeholder: migration 20260726223758 (ai_money_coach.sql) belongs to the money-flow (Luyra) app,
+-- which shares this Supabase project. It is already applied there and its SQL
+-- lives in that app's repository. Kept here only so local and remote migration
+-- history match for `supabase db push`. Intentionally contains no statements.
