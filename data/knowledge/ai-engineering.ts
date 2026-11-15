@@ -68,7 +68,7 @@ const narrativeSections: KnowledgeSection[] = [
         sourceLabel: "AX Engineering learning path",
         sourceUrl: "https://henheang.site/lab/ax-engineering",
         content: [
-            "Heang is learning and experimenting with AX Engineering concepts while keeping Backend / AX Software Engineer as his career direction and backend engineering as his primary foundation.",
+            "Heang is learning and experimenting with AX Engineering concepts while keeping backend engineering as his primary foundation and Software Engineer – Backend & AI-Assisted Development as his professional title.",
             "The version-controlled AX Engineering learning path explores Agent Harness design, context engineering, project instructions, skills, agents and subagents, MCP and tool calling, planning, permissions, sandboxing, hooks, quality gates, evaluations, observability, memory, handoff, and CI/CD integration.",
             "These are learning and practice topics, not claims of professional production-scale agent orchestration, MCP infrastructure, advanced evaluation, guardrail, or AgentOps expertise.",
             "Verified current practices remain AI-assisted development with Claude Code and Codex, plus the existing portfolio retrieval and evaluation implementation described elsewhere in the portfolio.",

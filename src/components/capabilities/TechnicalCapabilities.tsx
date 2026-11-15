@@ -1,7 +1,7 @@
 import React from "react"
 import { Section } from "@/src/components/system/Section"
 import { CapabilityColumns } from "@/src/components/capabilities/CapabilityColumns"
-import { aiStatement } from "@/src/lib/content/capabilities"
+import { aiPractice } from "@/src/lib/content/capabilities"
 import { buildCapabilityEvidence } from "@/src/lib/content/capability-evidence"
 import type { ExperienceItem, Project } from "@/src/lib/types"
 
@@ -35,7 +35,7 @@ export function TechnicalCapabilities({
             className={variant === "surface" ? "bg-surface" : undefined}
             revealHeader
         >
-            <CapabilityColumns groups={groups} aiStatement={aiStatement} />
+            <CapabilityColumns groups={groups} aiPractice={aiPractice} />
         </Section>
     )
 }

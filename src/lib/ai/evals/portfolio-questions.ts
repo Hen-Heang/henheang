@@ -45,11 +45,11 @@ export interface PortfolioEvalCase {
 
 export const portfolioEvalCases: PortfolioEvalCase[] = [
     // Profile
-    { id: "profile-who", category: "profile", question: "Who is Hen Heang?", expectedSectionIds: ["profile-overview", "positioning-primary"], requiredFacts: ["Backend / AX Software Engineer", "Seoul"], language: "en" },
+    { id: "profile-who", category: "profile", question: "Who is Hen Heang?", expectedSectionIds: ["profile-overview", "positioning-primary"], requiredFacts: ["Software Engineer – Backend & AI-Assisted Development", "Seoul"], language: "en" },
     { id: "profile-languages", category: "profile", question: "What languages does he speak?", expectedSectionIds: ["profile-languages"], requiredFacts: ["Khmer", "English", "Korean"], language: "en" },
 
     // Positioning
-    { id: "positioning-backend-or-fullstack", category: "positioning", question: "Is he backend or full-stack?", expectedSectionIds: ["positioning-primary"], requiredFacts: ["Backend / AX Software Engineer"], language: "en" },
+    { id: "positioning-backend-or-fullstack", category: "positioning", question: "Is he backend or full-stack?", expectedSectionIds: ["positioning-primary"], requiredFacts: ["Software Engineer – Backend & AI-Assisted Development"], language: "en" },
     // No forbiddenClaims here: the knowledge base *correctly* discusses and denies this positioning
     // ("not positioned as a machine-learning engineer"), which would trip a naive substring check against the KB
     // text. Whether the model's phrasing is a denial rather than a claim belongs in the live eval.

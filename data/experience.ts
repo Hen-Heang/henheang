@@ -2,19 +2,20 @@ import type { ExperienceItem } from "@/src/lib/types"
 
 export const experiences: ExperienceItem[] = [
     {
-        role: "Backend Developer (Java & Spring Boot)",
+        role: "Software Engineer – Backend & AI-Assisted Development",
         company: "Bizplay",
         period: "October 2025 — Present",
         location: "Seoul, South Korea",
-        summary: "Building enterprise financial web applications for government agencies and corporate clients. Developing both frontend interfaces and backend API services in Korean enterprise environment.",
+        summary: "Maintaining and developing enterprise financial applications at Bizplay (Webcash Group) for government agencies and corporate clients — Java and MyBatis business logic, Oracle SQL, and the enterprise web interfaces around them.",
         highlights: [
-            "Build voucher administration screens with HTML, CSS, and jQuery",
-            "Develop Java and MyBatis services for government-facing financial applications",
-            "Designing SQL queries and connecting APIs to Oracle database",
-            "Improving performance and stability of enterprise web applications",
-            "Working in cross-functional team using Korean enterprise development patterns"
+            "Implement Java and MyBatis business logic for enterprise financial applications",
+            "Write and analyze SQL queries against Oracle databases",
+            "Develop and maintain enterprise web interfaces, including voucher administration screens built with HTML, CSS, and jQuery",
+            "Analyze technical requirements and system design before implementation",
+            "Use AI coding assistants for code analysis, implementation, troubleshooting, and review preparation, while owning the correctness of each change",
+            "Collaborate with development teams and follow established coding standards in a Korean enterprise environment"
         ],
-        stack: ["Java", "MyBatis", "Oracle", "JavaScript", "jQuery", "SQL", "HTML/CSS", "REST APIs"]
+        stack: ["Java", "MyBatis", "Oracle", "SQL", "JavaScript", "jQuery", "HTML/CSS", "REST APIs"]
     },
     {
         role: "Software Engineer",

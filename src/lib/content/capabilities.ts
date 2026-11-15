@@ -69,12 +69,27 @@ export const capabilityGroups: readonly CapabilityGroup[] = [
 ] as const
 
 /**
- * How AI is presented across the site. Deliberately one statement rather than
- * a skills column — it separates the tools he develops *with* from the
- * product integrations he has actually shipped.
+ * How AI is presented across the site. Deliberately a short statement rather
+ * than a skills column, split into three tiers so professional practice,
+ * personal-project work, and learning are never blurred together.
  */
-export const aiStatement =
-    "Applied: AI-assisted development with Claude Code and Codex, plus product integrations using OpenAI and Anthropic. Learning: Agent Harness design, MCP, guardrails, evaluations, and agent observability through structured practice."
+export const aiPractice = [
+    {
+        label: "At work",
+        text: "AI coding assistants support requirement analysis, codebase exploration, SQL analysis, debugging, and review preparation. I verify the result and own every change.",
+    },
+    {
+        label: "Personal projects",
+        text: "Claude Code and Codex for planning, implementation, testing, and documentation, plus product features built on the OpenAI and Anthropic APIs.",
+    },
+    {
+        label: "Learning",
+        text: "Agent Harness design, MCP, guardrails, and evaluations, explored through the structured AX Engineering labs.",
+    },
+] as const
+
+/** Single-string form of `aiPractice`, for the assistant and plain-text contexts. */
+export const aiStatement = aiPractice.map((tier) => `${tier.label}: ${tier.text}`).join(" ")
 
 /**
  * Technologies that were previously shown as primary skills and now belong to

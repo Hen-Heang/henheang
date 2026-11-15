@@ -1,13 +1,14 @@
 import React from "react"
 import Link from "next/link"
-import { ArrowRight, ArrowUpRight, FileText } from "lucide-react"
-import { GithubIcon } from "@/src/components/icons/social"
+import { ArrowRight, ArrowUpRight, FileText, Mail } from "lucide-react"
+import { GithubIcon, LinkedinIcon } from "@/src/components/icons/social"
 import { Container } from "@/src/components/system/Container"
 import {
     TechnicalPanel,
     type TechnicalTab,
 } from "@/src/components/system/TechnicalPanel"
 import { HeroEntrance } from "@/src/components/home/HeroEntrance"
+import { KeepHyphenated } from "@/src/components/system/KeepHyphenated"
 import { positioning } from "@/src/lib/content/positioning"
 import type { Project } from "@/src/lib/types"
 import type { ProfileContentParsed } from "@/src/lib/schemas/content"
@@ -136,12 +137,33 @@ export function Hero({
                         </HeroEntrance>
 
                         <HeroEntrance delay={0.12} className="mt-3">
-                            <p className="text-balance text-lg font-semibold leading-snug text-brand sm:text-xl">
+                            <p className="text-lg font-semibold leading-snug text-fg sm:text-xl">
                                 {positioning.title}
+                            </p>
+                            <p className="mt-0.5 text-lg font-semibold leading-snug text-brand sm:text-xl">
+                                <KeepHyphenated
+                                    text={positioning.specialization}
+                                />
                             </p>
                         </HeroEntrance>
 
-                        <HeroEntrance delay={0.18} className="mt-4">
+                        <HeroEntrance delay={0.15} className="mt-4">
+                            <ul
+                                aria-label="Core backend technologies"
+                                className="flex flex-wrap gap-1.5"
+                            >
+                                {positioning.coreStack.map((tech) => (
+                                    <li
+                                        key={tech}
+                                        className="rounded-md border border-border bg-surface px-2 py-0.5 font-mono text-xs font-medium text-fg-secondary"
+                                    >
+                                        {tech}
+                                    </li>
+                                ))}
+                            </ul>
+                        </HeroEntrance>
+
+                        <HeroEntrance delay={0.18} className="mt-6">
                             <p className="text-balance text-base leading-relaxed text-fg-secondary sm:text-lg">
                                 {positioning.description}
                             </p>
@@ -154,7 +176,7 @@ export function Hero({
                         </HeroEntrance>
 
                         <HeroEntrance delay={0.24} className="mt-8 w-full">
-                            <div className="flex w-full flex-wrap items-center gap-3">
+                            <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                                 <Link
                                     href="#work"
                                     className="shadow-xs group inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] sm:w-auto"
@@ -173,14 +195,23 @@ export function Hero({
                                     <FileText size={15} aria-hidden />
                                     <span>Resume & Skills</span>
                                 </Link>
+                            </div>
+                            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium">
+                                <Link
+                                    href="/contact"
+                                    className="inline-flex min-h-6 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
+                                >
+                                    <Mail size={15} aria-hidden />
+                                    <span>Contact</span>
+                                </Link>
                                 <a
                                     href={profile.socialLinks.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex h-11 w-full items-center justify-center gap-1.5 px-3 text-sm font-medium text-fg-secondary transition-colors hover:text-fg sm:w-auto"
+                                    className="inline-flex min-h-6 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
                                     aria-label="View Hen Heang on GitHub (opens in a new tab)"
                                 >
-                                    <GithubIcon size={16} />
+                                    <GithubIcon size={15} />
                                     <span>GitHub</span>
                                     <ArrowUpRight
                                         size={13}
@@ -188,6 +219,23 @@ export function Hero({
                                         className="text-fg-muted"
                                     />
                                 </a>
+                                {profile.socialLinks.linkedin && (
+                                    <a
+                                        href={profile.socialLinks.linkedin}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="inline-flex min-h-6 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
+                                        aria-label="View Hen Heang on LinkedIn (opens in a new tab)"
+                                    >
+                                        <LinkedinIcon size={15} />
+                                        <span>LinkedIn</span>
+                                        <ArrowUpRight
+                                            size={13}
+                                            aria-hidden
+                                            className="text-fg-muted"
+                                        />
+                                    </a>
+                                )}
                             </div>
                         </HeroEntrance>
 

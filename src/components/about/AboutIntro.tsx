@@ -3,6 +3,7 @@ import Image from "next/image"
 import { BriefcaseBusiness, Mail, MapPin } from "lucide-react"
 import { Container } from "@/src/components/system/Container"
 import { Eyebrow } from "@/src/components/system/Eyebrow"
+import { KeepHyphenated } from "@/src/components/system/KeepHyphenated"
 import { getLanguageFlag } from "@/src/lib/utils/language-flags"
 import { positioning } from "@/src/lib/content/positioning"
 import type { ProfileContentParsed } from "@/src/lib/schemas/content"
@@ -20,6 +21,9 @@ export function AboutIntro({ profile }: { profile: ProfileContentParsed }) {
                         — {positioning.title}
                     </span>
                 </h1>
+                <p className="mt-3 text-lg font-semibold text-brand sm:text-xl">
+                    <KeepHyphenated text={positioning.specialization} />
+                </p>
 
                 <div className="mt-10 grid gap-10 md:grid-cols-[160px_1fr] md:items-start">
                     <div className="relative aspect-square w-32 overflow-hidden rounded-xl border border-border md:w-full">
