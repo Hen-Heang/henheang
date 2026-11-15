@@ -231,16 +231,16 @@ export const cvData: CVData = {
       featured: true,
     },
     {
-      name: "Hengo",
+      name: "H-Space",
       category: "Full-Stack App",
       description:
-        "Focused AI-assisted Korean learning platform on Next.js, Supabase Auth/Postgres with RLS, and JWT-verified AI routes.",
+        "Personal software ecosystem on Next.js and Supabase connecting my learning, finance, AI engineering, and productivity apps, with Hengo Learning as its Korean-learning experience.",
       bullets: [
-        "Built the Today, Vocabulary, Practice, Coach, and Study loop around spaced repetition, workplace Korean, and voice practice.",
-        "Kept data behind Supabase RLS and routed authenticated AI work through thin Next.js handlers with OpenAI and the Vercel AI SDK.",
+        "Built the H-Space hub that connects my existing applications and their source code, while preserving Hengo Learning's routes, data, spaced repetition, and AI coaching.",
+        "Kept data behind Supabase RLS and routed authenticated AI work through JWT-verified Next.js handlers with per-user limits, using OpenAI and the Vercel AI SDK.",
       ],
-      technologies: ["Next.js 16", "TypeScript", "Supabase", "Vercel AI SDK", "OpenAI", "Tailwind CSS"],
-      github: "https://github.com/Hen-Heang/hengo",
+      technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Vercel AI SDK", "OpenAI", "Tailwind CSS"],
+      github: "https://github.com/Hen-Heang/h-space",
       live: "https://hengo.henheang.site/home",
       caseStudy: "/projects/hengo",
       featured: false,

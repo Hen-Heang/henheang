@@ -4,6 +4,7 @@ import { profileData } from "@/data/profile"
 import { cvData } from "@/data/cv-data"
 import { experiences } from "@/data/experience"
 import { communityActivities } from "@/data/community"
+import { projects } from "@/data/projects"
 
 describe("positioning consistency", () => {
     it("uses the same professional title in every static fallback", () => {
@@ -36,6 +37,16 @@ describe("positioning consistency", () => {
     it("does not position AI tool usage as ML or AI-engineer expertise", () => {
         const text = [positioning.description, positioning.supporting, aboutSummary].join(" ")
         expect(text).not.toMatch(/machine learning engineer|ML engineer|AI engineer|AI expert/i)
+    })
+
+    it("names each CV project the same way as its case study", () => {
+        for (const item of cvData.projects) {
+            const slug = item.caseStudy?.replace(/^\/projects\//, "")
+            const project = projects.find((p) => p.slug === slug)
+            expect(project, `${item.name} links to a missing case study`).toBeDefined()
+            expect(project?.title.split(" — ")[0]).toBe(item.name)
+            expect(item.github).toBe(project?.github)
+        }
     })
 
     it("records community activity without unconfirmed specifics", () => {
