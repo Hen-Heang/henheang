@@ -92,7 +92,7 @@ export function Footer() {
                     </div>
 
                     <div className="min-w-0 md:col-span-6">
-                        <h2 className="font-mono text-xs font-semibold uppercase tracking-[0.15em] text-fg-muted">
+                        <h2 className="text-xs font-semibold text-fg-muted">
                             Navigation
                         </h2>
                         <ul className="mt-4 grid grid-cols-2 sm:grid-cols-3 gap-y-3 gap-x-4">

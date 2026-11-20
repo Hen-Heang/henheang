@@ -25,7 +25,8 @@ export function ResumePage({ cv }: { cv: CVData }) {
         </Link>
         <div className="flex flex-col items-end gap-1">
           <ResumePrintButton />
-          <p className="text-xs text-slate-400">Opens the browser print dialog.</p>
+          {/* Fixed light palette: this page is a white print document in both themes. slate-400 was 2.6:1. */}
+          <p className="text-xs text-slate-600">Opens the browser print dialog.</p>
         </div>
       </div>
 

@@ -125,7 +125,7 @@ export function ProjectCard({ project }: { project: Project }) {
                     {project.technologies.slice(0, 3).map((tech) => (
                         <li
                             key={tech}
-                            className="rounded-lg border border-border/80 bg-surface-elevated/50 px-2 py-0.5 font-mono text-[11px] text-fg-secondary"
+                            className="rounded-lg border border-border/80 bg-surface-elevated/50 px-2 py-0.5 font-mono text-xs text-fg-secondary"
                         >
                             {tech}
                         </li>

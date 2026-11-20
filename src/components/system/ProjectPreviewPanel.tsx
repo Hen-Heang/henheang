@@ -35,7 +35,7 @@ export function ProjectPreviewPanel({ preview, className }: { preview: ProjectPr
                             >
                                 <span
                                     className={cn(
-                                        "shrink-0 rounded-md border px-2 py-0.5 font-mono text-[10px] font-semibold",
+                                        "shrink-0 rounded-md border px-2 py-0.5 font-mono text-xs font-semibold",
                                         METHOD_COLOR[ep.method],
                                     )}
                                 >

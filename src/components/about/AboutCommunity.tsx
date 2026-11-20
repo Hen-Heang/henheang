@@ -25,7 +25,7 @@ export function AboutCommunity({ activities }: { activities: CommunityActivity[]
                     <Reveal key={activity.title} delay={index * 0.05}>
                         <article className="rounded-2xl border border-border bg-surface p-6 sm:p-8">
                             <div className="flex flex-wrap items-center gap-x-3 gap-y-2">
-                                <p className="font-mono text-xs font-medium uppercase tracking-[0.15em] text-brand">
+                                <p className="text-xs font-semibold text-fg-muted">
                                     {activity.role}
                                 </p>
                                 <StatusBadge status={activity.status === "completed" ? "archived" : "wip"}>

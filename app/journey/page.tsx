@@ -35,11 +35,11 @@ export default function JourneyPage() {
                 <Container>
                     <div className="max-w-3xl">
                         <Eyebrow className="mb-5">Now / Journey</Eyebrow>
-                        <SectionHeading as="h1" size="display">
+                        <SectionHeading as="h1" size="lg">
                             What I’m working on
                         </SectionHeading>
                         <p className="mt-6 max-w-2xl text-base leading-relaxed text-fg-secondary sm:text-lg">A public snapshot of the backend skills I’m deepening, the systems I’m building, and the evidence guiding my growth as a backend-focused software engineer.</p>
-                        <time dateTime={latestUpdate} className="mt-6 block font-mono text-xs uppercase tracking-[0.14em] text-fg-muted">
+                        <time dateTime={latestUpdate} className="mt-6 block text-sm text-fg-muted">
                             Last updated {formatUpdatedAt(latestUpdate)}
                         </time>
                     </div>

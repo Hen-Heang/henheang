@@ -235,7 +235,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                                                         <div className="flex min-w-0 items-start gap-2">
                                                             <span
                                                                 className={cn(
-                                                                    "shrink-0 rounded-md px-2 py-0.5 font-mono text-[11px] font-semibold",
+                                                                    "shrink-0 rounded-md px-2 py-0.5 font-mono text-xs font-semibold",
                                                                     methodColor[endpoint.method] ?? "bg-surface-hover text-fg",
                                                                 )}
                                                             >
