@@ -182,9 +182,10 @@ export function ProjectFeature({
                     </p>
                 )}
 
-                <h3 className="mt-3 text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
+                {/* h2 here: on /projects this panel sits directly under the page h1. The homepage variant above stays h3 under Selected Work's h2. */}
+                <h2 className="mt-3 text-2xl font-semibold tracking-tight text-fg sm:text-3xl">
                     {project.title}
-                </h3>
+                </h2>
 
                 {project.businessProblem && (
                     <div className="mt-6">

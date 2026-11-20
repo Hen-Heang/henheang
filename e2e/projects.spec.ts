@@ -4,7 +4,8 @@ test.describe("Projects index", () => {
     test("shows featured projects as large panels and the rest in a compact grid", async ({ page }) => {
         await page.setViewportSize({ width: 1440, height: 1200 })
         await page.goto("/projects")
-        await expect(page.getByRole("heading", { name: /H-Phsar/, level: 3 })).toBeVisible()
+        // Featured panels sit directly under the page h1, so they are h2s.
+        await expect(page.getByRole("heading", { name: /H-Phsar/, level: 2 })).toBeVisible()
         await expect(page.getByText("All projects", { exact: true })).toBeVisible()
         await expect(page.getByRole("link", { name: "View case study", exact: false }).first()).toBeVisible()
     })

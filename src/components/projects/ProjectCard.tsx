@@ -3,7 +3,7 @@ import Link from "next/link"
 import Image from "next/image"
 import { ArrowRight, ExternalLink } from "lucide-react"
 import { GithubIcon } from "@/src/components/icons/social"
-import { cn, interactiveCard } from "@/src/lib/utils/utils"
+import { cn } from "@/src/lib/utils/utils"
 import type { Project } from "@/src/lib/types"
 
 /**
@@ -25,17 +25,17 @@ export function ProjectCard({ project }: { project: Project }) {
     return (
         <div
             className={cn(
-                "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface shadow-xs transition-all duration-300 hover:border-brand/40 hover:shadow-md hover:-translate-y-1",
-                interactiveCard,
+                "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-border bg-surface transition-colors duration-200 hover:border-brand/40 focus-within:border-brand/40",
             )}
         >
             <div
                 className={cn(
                     // 16:9 matches the project preview artwork, so cover-fit never crops its text.
                     "relative aspect-video overflow-hidden border-b border-border",
+                    // Surface tint doubles as the placeholder while the lazy image loads.
                     project.imageFit === "contain"
-                        ? "bg-[#000611]"
-                        : "bg-background",
+                        ? "bg-navy"
+                        : "bg-surface-elevated",
                 )}
             >
                 <Image
@@ -47,10 +47,8 @@ export function ProjectCard({ project }: { project: Project }) {
                         project.imageFit === "contain"
                             ? "object-contain p-6 sm:p-8" // breathing room for square marks/posters
                             : "object-cover",
-                        "transition-transform duration-500 ease-out group-hover:scale-[1.03] motion-reduce:transition-none motion-reduce:group-hover:scale-100",
                     )}
                 />
-                <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-surface/30 via-transparent to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
             </div>
 
             <div className="flex flex-1 flex-col p-5">
@@ -147,7 +145,7 @@ export function ProjectCard({ project }: { project: Project }) {
                                 href={project.github}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex min-h-9 items-center gap-1.5 text-xs font-medium text-fg-secondary transition-colors hover:text-fg"
+                                className="inline-flex min-h-11 items-center gap-1.5 text-xs font-medium text-fg-secondary transition-colors hover:text-fg"
                                 aria-label={`View ${project.title} on GitHub (opens in a new tab)`}
                             >
                                 <GithubIcon size={14} brand={false} />
@@ -159,8 +157,8 @@ export function ProjectCard({ project }: { project: Project }) {
                                 href={project.demo}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="inline-flex min-h-9 items-center gap-1.5 text-xs font-medium text-fg-secondary transition-colors hover:text-fg"
-                                aria-label={`Open ${project.title} live site (opens in a new tab)`}
+                                className="inline-flex min-h-11 items-center gap-1.5 text-xs font-medium text-fg-secondary transition-colors hover:text-fg"
+                                aria-label={`Live demo: ${project.title} (opens in a new tab)`}
                             >
                                 Live demo
                                 <ExternalLink size={12} aria-hidden />
