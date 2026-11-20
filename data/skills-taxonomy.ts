@@ -98,7 +98,7 @@ const skillDefinitions: SkillDefinition[] = [
     // --- AI -------------------------------------------------------------
     { id: "ai-assisted-development", name: "AI-Assisted Development (Claude Code, Codex)", category: "ai", status: "primary", description: "Practical AI-assisted development workflow used across his current projects." },
     { id: "openai", name: "OpenAI API", category: "ai", status: "primary", description: "Powers Hengo's AI Coach — conversation, message analysis, and structured feedback — via the Vercel AI SDK." },
-    { id: "anthropic", name: "Anthropic API", category: "ai", status: "working-knowledge", description: "Powers Luyra's optional Money Coach over the user's own finance data." },
+    { id: "anthropic", name: "Anthropic API", category: "ai", status: "working-knowledge", description: "Built Luyra's optional Money Coach over the user's own finance data (luyra-web, before Luyra merged into H-Space)." },
     { id: "agent-harness-design", name: "Agent Harness Design", category: "ai", status: "learning", description: "Learning how context, instructions, tools, permissions, verification, and state form a reusable operating environment for AI-assisted development." },
     { id: "model-context-protocol", name: "Model Context Protocol (MCP)", category: "ai", status: "learning", description: "Exploring MCP architecture, bounded tool contracts, authentication, and read-only integration patterns through educational labs." },
     { id: "ai-evaluations", name: "AI Evaluations", category: "ai", status: "learning", description: "Practicing representative test cases and quality checks for retrieval, tool selection, groundedness, and workflow behavior." },

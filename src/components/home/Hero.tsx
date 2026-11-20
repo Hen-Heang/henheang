@@ -49,16 +49,16 @@ function buildTabs(projects: Project[]): TechnicalTab[] {
         })
     }
 
-    const luyra = bySlug("luyra")
-    if (luyra?.dataModel?.length) {
+    const hspace = bySlug("hengo")
+    if (hspace?.dataModel?.length) {
         tabs.push({
             id: "database",
             label: "database",
             data: {
                 kind: "database",
-                tables: luyra.dataModel.slice(0, 10),
+                tables: hspace.dataModel.slice(0, 10),
                 caption:
-                    "Luyra finance schema — authenticated access is scoped server-side before Neon queries.",
+                    "H-Space Finance schema (merged from Luyra) — every Neon query is scoped server-side to the linked account.",
             },
         })
     }

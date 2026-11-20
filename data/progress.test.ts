@@ -18,12 +18,13 @@ describe("current portfolio progress", () => {
         }
     })
 
-    it("shows the four active projects requested for the journey", () => {
+    // Luyra was merged into H-Space as its Finance area, so it is no longer
+    // listed as a separate active project.
+    it("shows the active projects requested for the journey", () => {
         expect(activeProjects.map((project) => project.name)).toEqual([
             "H-Space",
             "AuthHub",
             "Developer Portfolio",
-            "Luyra",
         ])
     })
 
