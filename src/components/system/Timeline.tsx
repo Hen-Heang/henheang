@@ -30,6 +30,15 @@ export interface TimelineEntry {
     kind?: "education" | "work" | "direction" | "certificate"
 }
 
+/**
+ * Phones: a certificate image is a link instead of an inline 16:10 picture.
+ * The images were about a third of the About timeline's height on a phone;
+ * the proof stays one tap away. Hidden from sm up, where the image shows.
+ */
+function CertificateImageLink({ src, className }: { src: string; className?: string }) {
+    return <TextLink href={src} external className={cn("sm:hidden", className)}>View certificate</TextLink>
+}
+
 const credentialIcon = {
     certificate: Award,
     graduation: GraduationCap,
@@ -103,7 +112,7 @@ export function Timeline({ items, className }: { items: TimelineEntry[]; classNa
                                             className="overflow-hidden rounded-xl border border-border bg-background"
                                         >
                                             {c.image && (
-                                                <div className="relative aspect-[16/10] border-b border-border bg-surface">
+                                                <div className="relative hidden aspect-[16/10] border-b border-border bg-surface sm:block">
                                                     <Image
                                                         src={c.image}
                                                         alt={`${c.title} from ${item.org}`}
@@ -132,6 +141,9 @@ export function Timeline({ items, className }: { items: TimelineEntry[]; classNa
                                                             Verify certificate
                                                         </TextLink>
                                                     )}
+                                                    {c.image && !c.link && (
+                                                        <CertificateImageLink src={c.image} className="mt-2 text-xs" />
+                                                    )}
                                                 </span>
                                             </div>
                                         </li>
@@ -144,8 +156,11 @@ export function Timeline({ items, className }: { items: TimelineEntry[]; classNa
                                 Verify certificate
                             </TextLink>
                         )}
+                        {item.kind === "certificate" && item.image && !item.link && (
+                            <CertificateImageLink src={item.image} className="mt-4" />
+                        )}
                         {item.kind === "certificate" && item.image && (
-                            <div className="relative mt-5 aspect-[16/10] max-w-lg overflow-hidden rounded-xl border border-border bg-background">
+                            <div className="relative mt-5 hidden aspect-[16/10] max-w-lg overflow-hidden rounded-xl border border-border bg-background sm:block">
                                 <Image
                                     src={item.image}
                                     alt={`${item.title} from ${item.org}`}
