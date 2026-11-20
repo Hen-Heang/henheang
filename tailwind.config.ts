@@ -27,9 +27,13 @@ const config: Config = {
 				sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
 				mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 			},
+			// Type scale, top to bottom. The home hero name is the single largest
+			// step on the site; page titles and section headings sit below it so a
+			// section heading never outranks the person the page is about.
 			fontSize: {
 				display: ["clamp(3rem, 8vw, 6.5rem)", { lineHeight: "0.98", letterSpacing: "-0.055em", fontWeight: "600" }],
-				"display-sm": ["clamp(2rem, 5vw, 4rem)", { lineHeight: "1.05", letterSpacing: "-0.03em", fontWeight: "600" }],
+				hero: ["clamp(2.75rem, 7vw, 4.75rem)", { lineHeight: "1", letterSpacing: "-0.045em", fontWeight: "700" }],
+				"display-sm": ["clamp(1.875rem, 3.6vw, 3rem)", { lineHeight: "1.08", letterSpacing: "-0.03em", fontWeight: "600" }],
 			},
 			maxWidth: {
 				content: "80rem", // 1280px page width
