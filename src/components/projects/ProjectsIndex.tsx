@@ -13,12 +13,21 @@ import type { Project } from "@/src/lib/types"
 
 const MAX_FEATURED = 1
 
-function isBackend(project: Project): boolean {
+// Prefer curated categories; use technology inference only for older rows
+// that do not have a project category.
+function hasBackendStack(project: Project): boolean {
     return project.technologies.some((t) => /spring|java|mybatis/i.test(t))
 }
 
+function isBackend(project: Project): boolean {
+    return project.category === "Backend API" ||
+        ((project.category === "Enterprise System" || !project.category) && hasBackendStack(project))
+}
+
 function isFullStack(project: Project): boolean {
-    return isBackend(project) && project.technologies.some((t) => /next\.?js|react/i.test(t))
+    return project.category === "Full-Stack Application" ||
+        (!project.category && hasBackendStack(project) &&
+            project.technologies.some((t) => /next|react/i.test(t)))
 }
 
 function isLive(project: Project): boolean {

@@ -58,10 +58,10 @@ Backend Lab content is parsed with Zod during module load and build. Published t
 ## Getting started
 
 ```bash
-git clone https://github.com/Hen-Heang/hen-heang-portfolio.git
-cd hen-heang-portfolio
-npm install
-npm run dev
+git clone https://github.com/Hen-Heang/henheang.git
+cd henheang
+pnpm install
+pnpm dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000).
@@ -80,14 +80,14 @@ Admin-managed JSON is validated with the same Zod schemas used by the public sit
 ## Scripts and verification
 
 ```bash
-npm run lint          # ESLint
-npm run typecheck     # TypeScript
-npm run test          # Vitest
-npm run test:watch    # Vitest watch mode
-npm run build         # Production build
-npm run test:e2e      # Playwright; starts or reuses the local Next.js server
-npm run format        # Prettier write
-npm run format:check  # Prettier check
+pnpm run lint          # ESLint
+pnpm run typecheck     # TypeScript
+pnpm run test          # Vitest
+pnpm run test:watch    # Vitest watch mode
+pnpm run build         # Production build
+pnpm run test:e2e      # Playwright; starts or reuses the local Next.js server
+pnpm run format        # Prettier write
+pnpm run format:check  # Prettier check
 ```
 
 Install Chromium once with `npx playwright install chromium`. Linux and CI environments can use `npx playwright install --with-deps chromium`.

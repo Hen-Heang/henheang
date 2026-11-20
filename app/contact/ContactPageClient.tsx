@@ -135,7 +135,7 @@ export function ContactPageClient() {
                             <div className="rounded-xl border border-border bg-surface p-6">
                                 <h4 className="text-sm font-semibold text-fg">Working Hours</h4>
                                 <p className="mt-2 text-sm leading-relaxed text-fg-muted">
-                                    Typically responding within 24 hours. Mon–Fri, 9:00 AM–6:00 PM (KST).
+                                    Typically replying within 1–2 business days. Mon–Fri, 9:00 AM–6:00 PM (KST).
                                 </p>
                             </div>
                         </div>

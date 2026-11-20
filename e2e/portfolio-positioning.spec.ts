@@ -34,7 +34,7 @@ test.describe("portfolio-wide positioning", () => {
 
         await page.goto("/journey")
         await expect(page.getByText("AX Engineering", { exact: true })).toBeVisible()
-        await expect(page.getByText("Last updated October 2, 2026")).toBeVisible()
+        await expect(page.getByText("Last updated November 20, 2026")).toBeVisible()
     })
 
     test("keeps the main portfolio routes inside an iPhone-width viewport", async ({
