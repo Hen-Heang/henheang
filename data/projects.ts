@@ -258,7 +258,7 @@ export const projects: Project[] = [
         skills: ["nextjs", "typescript", "react", "tailwind-css", "spring-boot", "postgresql", "rest-apis", "git"],
         image: "/image/vstv-logo-mark.png",
         imageFit: "contain",
-        github: "https://github.com/Hen-Heang/vstv-agent-web",
+        // Source repo is private. Public case study and demo remain available.
         demo: "https://vstv-agents.vercel.app/",
         businessProblem: "Real-estate listings, staff operations, and Telegram updates need one trustworthy workflow. VSTV Agent brings the public property experience and the private inventory console together so agents can manage verified units, publish safe summaries, and help renters find options in Phnom Penh.",
         overview: "VSTV Agent is a full-stack real-estate application for VSTV Agent (Cambodia) Co., Ltd. The public site presents rental properties, services, agents, contact paths, and location information; the protected admin console manages staff, units, availability, imports, inquiries, and operational settings. The application is migrating from a separate Spring Boot API toward a Next.js route-handler, Drizzle, and Neon architecture without forcing the UI to know which backend owns a domain.",

@@ -70,6 +70,9 @@ function mapProject(r: any): unknown {
   // Upgrade the known old branding without overwriting a later admin edit.
   // Keep the hengo slug so existing case-study links continue to resolve.
   const legacyHengo = r.slug === 'hengo' && typeof r.title === 'string' && /^Hengo(?:$|[ —–-])/.test(r.title) && s
+  // Known projects with no public source URL must not inherit an inaccessible
+  // GitHub link from a stale Supabase record.
+  const hideSourceLink = Boolean(s && !s.github)
   return {
     slug: r.slug,
     title: legacyHengo ? s.title : r.title,
@@ -77,7 +80,7 @@ function mapProject(r: any): unknown {
     technologies: r.technologies,
     image: s?.image ?? r.image,
     imageFit: s?.imageFit,
-    github: legacyHengo ? s.github : r.github ?? undefined,
+    github: hideSourceLink ? undefined : (legacyHengo ? s.github : r.github ?? s?.github ?? undefined),
     demo: r.demo ?? undefined,
     featured: s?.featured,
     hidden: s?.hidden,

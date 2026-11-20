@@ -19,6 +19,12 @@ test.describe("Projects index", () => {
         await expect(page.getByRole("heading", { name: "H-Space", exact: false })).toHaveCount(0)
     })
 
+    test("full-stack filter includes Next.js-only full-stack projects", async ({ page }) => {
+        await page.goto("/projects?filter=full-stack")
+        await expect(page.getByRole("link", { name: /^Full-stack/ })).toHaveAttribute("aria-current", "page")
+        await expect(page.getByRole("heading", { name: /H-Space/ })).toBeVisible()
+    })
+
     test("filter bar is reachable and scrollable at 320px with comfortable touch targets", async ({ page }) => {
         await page.setViewportSize({ width: 320, height: 700 })
         await page.goto("/projects")
@@ -67,8 +73,8 @@ test.describe("Projects index", () => {
         // Not hovering — the CTA must already be in the accessibility tree and rendered (opacity/visibility default state).
         await expect(cta).toBeVisible()
 
-        const githubLink = card.getByRole("link", { name: /GitHub/ })
-        await expect(githubLink).toBeVisible()
-        await expect(githubLink).toHaveAttribute("target", "_blank")
+        // VSTV source is private; the case study and public demo stay linked.
+        await expect(card.getByRole("link", { name: /GitHub/ })).toHaveCount(0)
+        await expect(card.getByRole("link", { name: /Live demo/ })).toBeVisible()
     })
 })
