@@ -124,7 +124,7 @@ export function Timeline({ items, className }: { items: TimelineEntry[]; classNa
                                                     <span className="block text-sm font-medium leading-snug text-fg">
                                                         {c.title}
                                                     </span>
-                                                    <span className="mt-1 block font-mono text-[10px] uppercase tracking-[0.14em] text-fg-muted">
+                                                    <span className="mt-1 block text-xs text-fg-muted">
                                                         {c.type}
                                                     </span>
                                                     {c.link && (

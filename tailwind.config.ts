@@ -144,12 +144,27 @@ const config: Config = {
 					from: { transform: "translateX(0)" },
 					to: { transform: "translateX(-50%)" },
 				},
+				// Request-path diagram: the rail fills top to bottom once on
+				// load and each hop's node lights as the fill reaches it. The
+				// element's resting styles are the lit end state, so with
+				// `motion-reduce:animate-none` it simply renders finished.
+				"rail-fill": {
+					from: { transform: "scaleY(0)" },
+					to: { transform: "scaleY(1)" },
+				},
+				"node-on": {
+					from: { borderColor: "hsl(var(--border-strong))", color: "hsl(var(--fg-muted))", boxShadow: "0 0 0 0 hsl(var(--brand) / 0)" },
+					"60%": { boxShadow: "0 0 0 6px hsl(var(--brand) / 0.18)" },
+					to: { borderColor: "hsl(var(--brand))", color: "hsl(var(--brand))", boxShadow: "0 0 0 0 hsl(var(--brand) / 0)" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 				drift: "drift 240s linear infinite",
 				"drift-slow": "drift 360s linear infinite",
+				"rail-fill": "rail-fill 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both",
+				"node-on": "node-on 0.6s ease-out both",
 			},
 		},
 	},

@@ -68,7 +68,7 @@ export function ProjectFeature({
             <article className="group grid items-start gap-6 lg:grid-cols-2 lg:gap-x-16 lg:gap-y-8">
                 <div className="lg:col-start-1 lg:row-start-1">
                     {homepageMetadata.length > 0 && (
-                        <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                        <p className="text-xs font-semibold text-fg-muted">
                             {homepageMetadata.join(" / ")}
                         </p>
                     )}
@@ -89,7 +89,7 @@ export function ProjectFeature({
                 <div className="lg:col-start-1 lg:row-start-2">
                     {project.businessProblem && (
                         <div>
-                            <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                            <p className="text-xs font-semibold text-fg-muted">
                                 Problem
                             </p>
                             <p className="mt-2 text-base leading-relaxed text-fg-secondary">
@@ -99,7 +99,7 @@ export function ProjectFeature({
                     )}
 
                     <div className="mt-5">
-                        <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                        <p className="text-xs font-semibold text-fg-muted">
                             Solution
                         </p>
                         <p className="mt-2 text-base leading-relaxed text-fg-secondary">
@@ -109,7 +109,7 @@ export function ProjectFeature({
 
                     {contributions.length > 0 && (
                         <div className="mt-5">
-                            <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                            <p className="text-xs font-semibold text-fg-muted">
                                 My contribution
                             </p>
                             <ul className="mt-2 space-y-1.5">
@@ -177,7 +177,7 @@ export function ProjectFeature({
                 )}
             >
                 {metadata.length > 0 && (
-                    <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                    <p className="text-xs font-semibold text-fg-muted">
                         {metadata.join(" / ")}
                     </p>
                 )}
@@ -188,7 +188,7 @@ export function ProjectFeature({
 
                 {project.businessProblem && (
                     <div className="mt-6">
-                        <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                        <p className="text-xs font-semibold text-fg-muted">
                             Problem
                         </p>
                         <p className="mt-2 leading-relaxed text-fg-secondary">
@@ -198,7 +198,7 @@ export function ProjectFeature({
                 )}
 
                 <div className="mt-5">
-                    <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                    <p className="text-xs font-semibold text-fg-muted">
                         Solution
                     </p>
                     <p className="mt-2 leading-relaxed text-fg-secondary">
@@ -208,7 +208,7 @@ export function ProjectFeature({
 
                 {contributions.length > 0 && (
                     <div className="mt-5">
-                        <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                        <p className="text-xs font-semibold text-fg-muted">
                             My contribution
                         </p>
                         <ul className="mt-2 space-y-1.5">
@@ -231,7 +231,7 @@ export function ProjectFeature({
                 {project.engineeringFocus &&
                     project.engineeringFocus.length > 0 && (
                         <div className="mt-5">
-                            <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                            <p className="text-xs font-semibold text-fg-muted">
                                 Engineering focus
                             </p>
                             <p className="mt-2 text-sm text-fg-secondary">

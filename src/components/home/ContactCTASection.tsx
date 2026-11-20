@@ -11,11 +11,10 @@ export function ContactCTASection() {
         <section className="border-t border-border py-16 sm:py-24">
             <Container>
                 <Reveal>
-                    <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-b from-surface via-surface to-surface-elevated/80 p-8 shadow-sm sm:p-12 lg:p-16">
-                        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand/5 blur-3xl" />
+                    <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 sm:p-12 lg:p-16">
                         <div className="relative z-10 flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
                             <div className="max-w-2xl">
-                                <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+                                <span className="text-sm font-medium text-fg-muted">
                                     Let&apos;s Build Together
                                 </span>
                                 <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-fg sm:text-4xl lg:text-5xl leading-tight">

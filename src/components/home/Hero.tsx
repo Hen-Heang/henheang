@@ -3,84 +3,17 @@ import Link from "next/link"
 import { ArrowRight, ArrowUpRight, FileText, Mail } from "lucide-react"
 import { GithubIcon, LinkedinIcon } from "@/src/components/icons/social"
 import { Container } from "@/src/components/system/Container"
-import {
-    TechnicalPanel,
-    type TechnicalTab,
-} from "@/src/components/system/TechnicalPanel"
 import { HeroEntrance } from "@/src/components/home/HeroEntrance"
+import { RequestPath } from "@/src/components/home/RequestPath"
 import { KeepHyphenated } from "@/src/components/system/KeepHyphenated"
+import {
+    primaryAction,
+    secondaryAction,
+} from "@/src/components/system/actionStyles"
 import { positioning } from "@/src/lib/content/positioning"
+import { cn } from "@/src/lib/utils/utils"
 import type { Project } from "@/src/lib/types"
 import type { ProfileContentParsed } from "@/src/lib/schemas/content"
-
-/**
- * Builds the hero's technical views from real project data: API request
- * first (the default, visible-on-mobile tab), then database, then pipeline.
- * The H-Phsar architecture flow is deliberately absent — Selected Work shows
- * it directly below, and repeating it here made the page say the same thing
- * twice. The API response body and pipeline stages are labeled illustrative
- * in their captions.
- */
-function buildTabs(projects: Project[]): TechnicalTab[] {
-    const bySlug = (slug: string) => projects.find((p) => p.slug === slug)
-    const tabs: TechnicalTab[] = []
-
-    const authhub = bySlug("authhub")
-    const authEndpoint = authhub?.apiEndpoints?.[0]
-    if (authEndpoint) {
-        tabs.push({
-            id: "api",
-            label: "api",
-            data: {
-                kind: "request",
-                method: authEndpoint.method,
-                path: authEndpoint.path,
-                responseLines: [
-                    "HTTP/1.1 200 OK",
-                    "{",
-                    '  "accessToken":  "eyJhbGci…",',
-                    '  "refreshToken": "d290f1ee…",',
-                    '  "tokenType":    "Bearer",',
-                    '  "expiresIn":    900',
-                    "}",
-                ],
-                caption: `Real endpoint from ${authhub.title.split("—")[0].trim()} (JWT with refresh + revocation). Response body illustrative.`,
-            },
-        })
-    }
-
-    const hspace = bySlug("hengo")
-    if (hspace?.dataModel?.length) {
-        tabs.push({
-            id: "database",
-            label: "database",
-            data: {
-                kind: "database",
-                tables: hspace.dataModel.slice(0, 10),
-                caption:
-                    "H-Space Finance schema (merged from Luyra) — every Neon query is scoped server-side to the linked account.",
-            },
-        })
-    }
-
-    tabs.push({
-        id: "pipeline",
-        label: "pipeline",
-        data: {
-            kind: "pipeline",
-            stages: [
-                { label: "git push", detail: "feature branch" },
-                { label: "GitHub Actions", detail: "postgres:16 service" },
-                { label: "build + test", detail: "Flyway validates schema" },
-                { label: "deploy", detail: "on green" },
-            ],
-            caption:
-                "CI pipeline as run on AuthHub (GitHub Actions + postgres:16). Stages illustrative.",
-        },
-    })
-
-    return tabs
-}
 
 export function Hero({
     profile,
@@ -89,7 +22,7 @@ export function Hero({
     profile: ProfileContentParsed
     projects: Project[]
 }) {
-    const tabs = buildTabs(projects)
+    const authhub = projects.find((p) => p.slug === "authhub")
     const visibleProjects = projects.filter((p) => !p.hidden)
     const liveCount = visibleProjects.filter(
         (p) => p.demo && p.demo !== "#",
@@ -116,7 +49,7 @@ export function Hero({
                                     <p className="mt-0.5 inline-flex items-center gap-1.5 text-xs text-fg-muted">
                                         {profile.available && (
                                             <span
-                                                className="h-1.5 w-1.5 rounded-full bg-emerald-500"
+                                                className="h-1.5 w-1.5 rounded-full bg-success"
                                                 aria-hidden
                                             />
                                         )}
@@ -131,7 +64,7 @@ export function Hero({
                         </HeroEntrance>
 
                         <HeroEntrance delay={0.06}>
-                            <h1 className="text-balance text-4xl font-extrabold leading-[1.06] tracking-tight text-fg sm:text-5xl lg:text-6xl">
+                            <h1 className="text-balance text-hero text-fg">
                                 {profile.name}
                             </h1>
                         </HeroEntrance>
@@ -169,7 +102,13 @@ export function Hero({
                             </p>
                         </HeroEntrance>
 
-                        <HeroEntrance delay={0.22} className="mt-3">
+                        {/* Phones: the long supporting paragraph moves below the
+                            actions and stats so the primary button is in the
+                            first screen. DOM order (and reading order) is unchanged. */}
+                        <HeroEntrance
+                            delay={0.22}
+                            className="order-1 mt-6 sm:order-none sm:mt-3"
+                        >
                             <p className="text-sm leading-relaxed text-fg-muted sm:text-base">
                                 {positioning.supporting}
                             </p>
@@ -179,7 +118,10 @@ export function Hero({
                             <div className="flex w-full flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
                                 <Link
                                     href="#work"
-                                    className="shadow-xs group inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl bg-gradient-brand px-5 text-sm font-semibold text-white transition-all duration-200 hover:brightness-110 active:scale-[0.98] sm:w-auto"
+                                    className={cn(
+                                        primaryAction,
+                                        "group w-full sm:w-auto",
+                                    )}
                                 >
                                     <span>View Backend Work</span>
                                     <ArrowRight
@@ -190,16 +132,19 @@ export function Hero({
                                 </Link>
                                 <Link
                                     href="/resume"
-                                    className="inline-flex h-11 w-full items-center justify-center gap-2 rounded-xl border border-border bg-surface px-5 text-sm font-medium text-fg transition-all duration-200 hover:border-border-strong hover:bg-surface-hover active:scale-[0.98] sm:w-auto"
+                                    className={cn(
+                                        secondaryAction,
+                                        "w-full sm:w-auto",
+                                    )}
                                 >
                                     <FileText size={15} aria-hidden />
                                     <span>Resume & Skills</span>
                                 </Link>
                             </div>
-                            <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-sm font-medium">
+                            <div className="mt-2 flex flex-wrap items-center gap-x-5 text-sm font-medium">
                                 <Link
                                     href="/contact"
-                                    className="inline-flex min-h-6 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
+                                    className="inline-flex min-h-11 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
                                 >
                                     <Mail size={15} aria-hidden />
                                     <span>Contact</span>
@@ -208,7 +153,7 @@ export function Hero({
                                     href={profile.socialLinks.github}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="inline-flex min-h-6 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
+                                    className="inline-flex min-h-11 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
                                     aria-label="View Hen Heang on GitHub (opens in a new tab)"
                                 >
                                     <GithubIcon size={15} />
@@ -224,7 +169,7 @@ export function Hero({
                                         href={profile.socialLinks.linkedin}
                                         target="_blank"
                                         rel="noopener noreferrer"
-                                        className="inline-flex min-h-6 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
+                                        className="inline-flex min-h-11 items-center gap-1.5 text-fg-secondary transition-colors hover:text-fg"
                                         aria-label="View Hen Heang on LinkedIn (opens in a new tab)"
                                     >
                                         <LinkedinIcon size={15} />
@@ -246,7 +191,7 @@ export function Hero({
                                         key={stat.label}
                                         className="flex flex-col-reverse"
                                     >
-                                        <dt className="mt-0.5 text-[11px] font-medium uppercase tracking-wider text-fg-muted">
+                                        <dt className="mt-0.5 text-xs font-medium text-fg-muted">
                                             {stat.label}
                                         </dt>
                                         <dd className="font-mono text-2xl font-bold tabular-nums tracking-tight text-fg sm:text-3xl">
@@ -259,7 +204,7 @@ export function Hero({
                     </div>
 
                     <HeroEntrance delay={0.36} className="min-w-0">
-                        <TechnicalPanel tabs={tabs} />
+                        <RequestPath project={authhub} />
                     </HeroEntrance>
                 </div>
             </Container>

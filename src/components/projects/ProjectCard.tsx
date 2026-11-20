@@ -56,13 +56,13 @@ export function ProjectCard({ project }: { project: Project }) {
             <div className="flex flex-1 flex-col p-5">
                 <div className="flex items-center justify-between gap-3">
                     {project.category ? (
-                        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-brand font-medium">
+                        <p className="text-xs font-medium text-fg-muted">
                             {project.category}
                         </p>
                     ) : (
                         <span aria-hidden="true" />
                     )}
-                    <span className="inline-flex shrink-0 items-center gap-1.5 font-mono text-[10px] font-medium uppercase tracking-wider text-fg-muted">
+                    <span className="inline-flex shrink-0 items-center gap-1.5 text-xs font-medium text-fg-muted">
                         <span
                             className={`h-1.5 w-1.5 rounded-full ${availability.dot}`}
                             aria-hidden="true"
@@ -87,7 +87,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
                 {project.role && (
                     <p className="mt-3 text-xs text-fg-muted">
-                        <span className="font-mono uppercase tracking-wider">
+                        <span className="font-medium">
                             Role
                         </span>
                         {" · "}
@@ -98,7 +98,7 @@ export function ProjectCard({ project }: { project: Project }) {
                 {project.engineeringFocus &&
                     project.engineeringFocus.length > 0 && (
                         <div className="mt-3">
-                            <p className="font-mono text-[10px] font-semibold uppercase tracking-wider text-fg-muted">
+                            <p className="text-xs font-semibold text-fg-muted">
                                 Engineering focus
                             </p>
                             <p className="mt-1 line-clamp-2 text-xs leading-5 text-fg-secondary">

@@ -118,7 +118,7 @@ export function CapabilityColumns({
                                 {evidenceSources.length > 0 && (
                                     <div className="mt-auto border-t border-border pt-4">
                                         <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-fg-muted">
-                                            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider">
+                                            <span className="text-xs font-semibold">
                                                 Used in
                                             </span>
                                             {evidenceSources.map(
