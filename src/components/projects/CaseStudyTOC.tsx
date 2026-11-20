@@ -15,7 +15,7 @@ export function CaseStudyTOC({ items }: { items: TocItem[] }) {
 
     return (
         <nav aria-label="Case study sections" className="sticky top-24 hidden max-h-[70vh] overflow-y-auto lg:block">
-            <p className="mb-3 font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">On this page</p>
+            <p className="mb-3 text-xs font-semibold text-fg-muted">On this page</p>
             <ul className="space-y-2 border-l border-border">
                 {items.map((item) => (
                     <li key={item.id}>
