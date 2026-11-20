@@ -66,6 +66,12 @@ const config: Config = {
 					dark: "hsl(var(--brand-dark) / <alpha-value>)",
 					foreground: "hsl(var(--brand-foreground) / <alpha-value>)",
 				},
+				action: {
+					DEFAULT: "hsl(var(--action) / <alpha-value>)",
+					hover: "hsl(var(--action-hover) / <alpha-value>)",
+					active: "hsl(var(--action-active) / <alpha-value>)",
+					foreground: "hsl(var(--action-foreground) / <alpha-value>)",
+				},
 				success: "hsl(var(--success) / <alpha-value>)",
 				warning: "hsl(var(--warning) / <alpha-value>)",
 				error: "hsl(var(--error) / <alpha-value>)",

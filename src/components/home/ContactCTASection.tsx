@@ -2,6 +2,8 @@ import React from "react"
 import Link from "next/link"
 import { ArrowRight, FileText, MessageCircle } from "lucide-react"
 import { Container } from "@/src/components/system/Container"
+import { primaryAction, secondaryAction } from "@/src/components/system/actionStyles"
+import { cn } from "@/src/lib/utils/utils"
 import { Reveal } from "@/src/components/system/Reveal"
 
 export function ContactCTASection() {
@@ -26,7 +28,7 @@ export function ContactCTASection() {
                             <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
                                 <Link
                                     href="/contact"
-                                    className="group inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-brand px-6 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
+                                    className={cn(primaryAction, "group whitespace-nowrap")}
                                 >
                                     <MessageCircle size={16} aria-hidden />
                                     <span>Start a conversation</span>
@@ -34,7 +36,7 @@ export function ContactCTASection() {
                                 </Link>
                                 <Link
                                     href="/resume"
-                                    className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border bg-surface px-5 text-sm font-medium text-fg transition-all duration-200 hover:border-border-strong hover:bg-surface-hover active:scale-[0.98]"
+                                    className={cn(secondaryAction, "whitespace-nowrap")}
                                 >
                                     <FileText size={15} aria-hidden />
                                     <span>View Resume</span>

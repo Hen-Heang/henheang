@@ -47,6 +47,13 @@
     --brand-active: 223 70% 25%; /* #12356e — pressed state */
     --brand-dark: 223 70% 25%; /* deep accent for subtle fills */
     --brand-foreground: 0 0% 100%;
+    /* The one filled primary action: solid navy with white text in both
+       themes (brand itself turns light-blue in dark mode, where white text
+       on it would fail). */
+    --action: var(--brand);
+    --action-hover: var(--brand-hover);
+    --action-active: var(--brand-active);
+    --action-foreground: 0 0% 100%;
     --success: 142 72% 25%; /* #126e34 */
     --warning: 24 90% 32%; /* #9b4308 — amber-600 failed AA on tinted surfaces */
     --error: 0 74% 42%; /* #ba1c1c */
@@ -71,15 +78,15 @@
     --surface-code: 222 28% 7%; /* #0d111a */
     --surface-code-foreground: 215 20% 84%; /* #ccd4df */
 
-    /* Navy gradient family: deliberately dark in both themes (same convention
-       as --surface-code above). Used sparingly — primary CTAs and the hero
-       console chrome only, not applied per-section or per-card. */
+    /* Navy family: deliberately dark in both themes (same convention as
+       --surface-code above), for code/console chrome. */
     --navy: 213 69% 9%; /* #071426 */
     --navy-surface: 212 69% 14%; /* #0B1F3A */
     --navy-elevated: 211 65% 18%; /* #102A4C */
-    --gradient-blue: 221 83% 53%; /* #1D4ED8 — indigo, gradient stop */
-    --gradient-cyan: 199 89% 60%; /* #38BDF8 — cyan highlight, ambient/chrome accent only (fails AA under white button text, so it's never a CTA gradient stop) */
-    --gradient-brand: linear-gradient(135deg, hsl(var(--navy-elevated)) 0%, hsl(var(--gradient-blue)) 100%);
+    /* Primary actions are flat now. `bg-gradient-brand` is still used by lab
+       and assistant buttons with white text, so it resolves to the solid
+       action colour rather than being removed. */
+    --gradient-brand: linear-gradient(hsl(var(--action)), hsl(var(--action)));
     --gradient-console: linear-gradient(90deg, hsl(var(--navy)) 0%, hsl(var(--navy-elevated)) 100%);
 
     --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
@@ -136,6 +143,9 @@
     --brand-active: 217 85% 58%;
     --brand-dark: 219 85% 38%;
     --brand-foreground: 222 47% 7%; /* #0a0f1a */
+    --action: 219 80% 46%; /* white text 6.2:1; 3.2:1 against the page */
+    --action-hover: 219 80% 52%;
+    --action-active: 219 80% 40%;
     --success: 142 69% 58%; /* #4ade80 */
     --warning: 43 96% 56%; /* #fbbf24 */
     --error: 0 91% 71%; /* #f87171 */
@@ -223,6 +233,15 @@
        rubber-band at the edge and trigger Chrome/macOS's swipe-to-navigate
        gesture, silently sending the visitor back or forward in history. */
     overscroll-behavior-x: none;
+  }
+
+  /* Below lg, pages with SiteHeader open the assistant from a header button,
+     so the floating trigger would only cover content there. Pure CSS (no
+     effect) so the two never show together, even before hydration. */
+  @media (max-width: 1023.98px) {
+    body:has([data-site-header]) [data-assistant-fab] {
+      display: none;
+    }
   }
 
   /* Shared hover treatment for cards and tiles across the lab.

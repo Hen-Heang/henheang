@@ -9,6 +9,7 @@ import { ArchitecturePreview } from "@/src/components/system/ArchitecturePreview
 import { CaseStudyTOC, type TocItem } from "@/src/components/projects/CaseStudyTOC"
 import { ScreenshotGallery } from "@/src/components/projects/ScreenshotGallery"
 import { cn } from "@/src/lib/utils/utils"
+import { primaryAction, secondaryAction } from "@/src/components/system/actionStyles"
 import type { Project } from "@/src/lib/types"
 
 type AdjacentProject = Pick<Project, "slug" | "title"> | null
@@ -112,7 +113,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-border px-4 text-sm font-medium text-fg transition-colors hover:border-border-strong hover:bg-surface-hover"
+                            className={secondaryAction}
                         >
                             <GithubIcon size={16} brand={false} /> GitHub
                         </a>
@@ -122,7 +123,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex h-10 items-center justify-center rounded-lg bg-brand px-4 text-sm font-medium text-brand-foreground transition-opacity hover:opacity-90"
+                            className={primaryAction}
                         >
                             Live Demo
                         </a>
