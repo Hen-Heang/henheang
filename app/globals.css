@@ -8,15 +8,20 @@
     margin: 12mm 14mm;
   }
 
-  /* Hide everything outside the printable document (CV or ATS resume) */
-  body > * {
+  /* Print only the document ([data-print-root] on /cv and /resume): hide
+     every element that neither contains the root nor sits inside it.
+
+     The root's ancestors must stay rendered. The previous rule hid every
+     direct child of <body>, which included the page wrapper around the
+     root, so the root rendered 0x0 and every print/PDF came out blank —
+     `display: revert` on the root cannot undo a display:none ancestor.
+     Elements inside the root keep their own print: utilities. */
+  body *:not(:has([data-print-root])):not([data-print-root]):not([data-print-root] *) {
     display: none !important;
   }
 
-  /* Show only the page's print root ([data-print-root] on /cv and /resume) */
-  [data-print-root],
-  [data-print-root] * {
-    display: revert !important;
+  body {
+    background: white !important;
   }
 }
 

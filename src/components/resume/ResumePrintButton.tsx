@@ -1,18 +1,19 @@
 "use client"
 
 import { Printer } from "lucide-react"
-import { primaryAction } from "@/src/components/system/actionStyles"
+import { paperSecondaryAction } from "@/src/components/system/actionStyles"
 
+/** Secondary to "Download PDF": printing is still useful, but the file is what most visitors want. */
 export function ResumePrintButton() {
   return (
     <button
       type="button"
       onClick={() => window.print()}
       title="Opens the browser print dialog"
-      className={primaryAction}
+      className={paperSecondaryAction}
     >
       <Printer size={15} aria-hidden />
-      Print / Save as PDF
+      Print
     </button>
   )
 }

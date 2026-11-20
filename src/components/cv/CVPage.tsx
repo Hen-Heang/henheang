@@ -1,5 +1,6 @@
 import Link from "next/link"
-import { User, FileText } from "lucide-react"
+import { ArrowLeft, User, FileText } from "lucide-react"
+import { paperSecondaryAction } from "@/src/components/system/actionStyles"
 import { GithubIcon } from "@/src/components/icons/social"
 import { CVHeader } from "./CVHeader"
 import { CVSection } from "./CVSection"
@@ -16,26 +17,30 @@ export function CVPage({ cv }: { cv: CVData }) {
   return (
     <div className="min-h-screen bg-slate-50 py-10 px-4 print:bg-white print:p-0">
       {/* Toolbar (hidden when printing) */}
-      <div className="max-w-5xl mx-auto mb-6 flex flex-wrap justify-end gap-3 print:hidden">
-        <Link
-          href="/resume"
-          className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-slate-700 text-sm font-semibold border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-colors"
-        >
-          <FileText size={15} aria-hidden />
-          View ATS Resume
+      {/* No site header on this page, so the toolbar carries the way back. */}
+      <div className="max-w-5xl mx-auto mb-6 flex flex-wrap items-center justify-between gap-3 print:hidden">
+        <Link href="/" className={paperSecondaryAction}>
+          <ArrowLeft size={15} aria-hidden />
+          Back to portfolio
         </Link>
-        {cv.personal.github && (
-          <a
-            href={cv.personal.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white text-slate-700 text-sm font-semibold border border-slate-200 hover:border-slate-300 hover:text-slate-900 transition-colors"
-          >
-            <GithubIcon size={15} brand={false} />
-            View GitHub
-          </a>
-        )}
-        <CVDownloadButton />
+        <div className="flex flex-wrap gap-2">
+          <Link href="/resume" className={paperSecondaryAction}>
+            <FileText size={15} aria-hidden />
+            View ATS Resume
+          </Link>
+          {cv.personal.github && (
+            <a
+              href={cv.personal.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={paperSecondaryAction}
+            >
+              <GithubIcon size={15} brand={false} />
+              View GitHub
+            </a>
+          )}
+          <CVDownloadButton />
+        </div>
       </div>
 
       {/* CV Document */}
@@ -76,7 +81,7 @@ export function CVPage({ cv }: { cv: CVData }) {
       </div>
 
       {/* Footer hint for users */}
-      <div className="max-w-5xl mx-auto mt-8 text-center text-slate-400 text-xs print:hidden">
+      <div className="max-w-5xl mx-auto mt-8 text-center text-slate-600 text-xs print:hidden">
         <p>© {new Date().getFullYear()} Hen Heang — Built with Next.js &amp; Tailwind CSS</p>
       </div>
     </div>
