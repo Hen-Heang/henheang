@@ -168,7 +168,8 @@ export const cvData: CVData = {
       // Supporting capability, not the primary identity — kept as plain text
       // tags (no proficiency levels) and placed after core backend/database
       // skills. Every item here is verified: app/api/chat/route.ts (OpenAI
-      // Responses API), data/projects.ts luyra (Anthropic Money Coach), and
+      // Responses API), the Luyra Money Coach (Anthropic SDK, in the public
+      // Hen-Heang/luyra-web repo, built before Luyra merged into H-Space), and
       // data/progress.ts "ai" entry (Claude Code, Codex, Prompt Design,
       // AI-supported code review — self-reported, in progress).
       category: "AI & Developer Productivity",
@@ -194,7 +195,7 @@ export const cvData: CVData = {
 
   /**
    * Featured projects. `featured: true` = shown on /resume (backend-first).
-   * /cv shows all three. Set github/live/caseStudy to null when a link isn't
+   * /cv shows all of them. Set github/live/caseStudy to null when a link isn't
    * publicly reachable — never leave a broken or misleading link.
    * We Commerce is intentionally omitted here (unlisted/hidden everywhere,
    * matching `hidden: true` on its data/projects.ts entry).
@@ -216,34 +217,21 @@ export const cvData: CVData = {
       featured: true,
     },
     {
-      name: "Luyra",
-      category: "Full-Stack App",
-      description:
-        "Personal finance workspace on Next.js, Supabase Auth, and Neon Postgres with scheduled reviews and finance automation.",
-      bullets: [
-        "Built transaction, budgeting, savings, analytics, and financial-review workflows behind authenticated Next.js route handlers.",
-        "Added an optional Anthropic Money Coach plus scheduled budget alerts, summaries, reports, and multi-channel delivery.",
-      ],
-      technologies: ["Next.js 16", "TypeScript", "Supabase Auth", "Neon Postgres", "Anthropic"],
-      github: "https://github.com/Hen-Heang/luyra-web",
-      live: "https://luyra.henheang.site/",
-      caseStudy: "/projects/luyra",
-      featured: true,
-    },
-    {
+      // Luyra (personal finance) was merged into H-Space as its Finance area,
+      // so it is described here rather than as a separate project.
       name: "H-Space",
       category: "Full-Stack App",
       description:
-        "Personal software ecosystem on Next.js and Supabase connecting my learning, finance, AI engineering, and productivity apps, with Hengo Learning as its Korean-learning experience.",
+        "Personal software ecosystem on Next.js, Supabase, and Neon Postgres that brings my learning, finance, and productivity apps into one place — Hengo Learning for Korean and the Luyra finance workspace merged in as Finance.",
       bullets: [
-        "Built the H-Space hub that connects my existing applications and their source code, while preserving Hengo Learning's routes, data, spaced repetition, and AI coaching.",
-        "Kept data behind Supabase RLS and routed authenticated AI work through JWT-verified Next.js handlers with per-user limits, using OpenAI and the Vercel AI SDK.",
+        "Merged the standalone Luyra finance app into H-Space: transactions, budgets, savings, reviews, reports, and scheduled Telegram/email alerts behind server-only route handlers that scope every Neon query to an explicitly linked account.",
+        "Kept learning data behind Supabase RLS and routed authenticated AI work through JWT-verified Next.js handlers with per-user limits, using OpenAI and the Vercel AI SDK.",
       ],
-      technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Vercel AI SDK", "OpenAI", "Tailwind CSS"],
+      technologies: ["Next.js 16", "React 19", "TypeScript", "Supabase", "Neon Postgres", "Vercel AI SDK", "OpenAI"],
       github: "https://github.com/Hen-Heang/h-space",
       live: "https://hengo.henheang.site/home",
       caseStudy: "/projects/hengo",
-      featured: false,
+      featured: true,
     },
   ] satisfies ProjectItem[],
 

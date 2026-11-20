@@ -19,9 +19,8 @@ const technique = (category: PerformanceEntry["category"], slug: string, solutio
 }
 
 export const performanceTechniques: PerformanceEntry[] = [
-    technique("Caching", "hengo", 1),
-    technique("Background Jobs", "luyra", 1),
-    technique("Reliability", "luyra", 2),
-    technique("Data Access", "luyra", 0),
+    technique("Data Access", "hengo", 1),
+    technique("Background Jobs", "hengo", 2),
+    technique("Reliability", "vstv-agent", 2),
     technique("Data Access", "h-phsar", 0),
 ]

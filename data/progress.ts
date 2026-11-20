@@ -119,10 +119,10 @@ export const activeProjects: ActiveProject[] = [
         id: "hengo",
         name: "H-Space",
         description:
-            "My personal application hub for learning, finance, productivity, and engineering, preserving Hengo Learning.",
+            "My personal application hub for learning, finance, productivity, and engineering — Hengo Learning plus the Luyra finance workspace, now merged in as Finance.",
         status: "Building",
         href: "/projects/hengo",
-        technologies: ["Next.js", "Supabase", "OpenAI", "Vercel AI SDK"],
+        technologies: ["Next.js", "Supabase", "Neon", "OpenAI", "Vercel AI SDK"],
     },
     {
         id: "authhub",
@@ -141,14 +141,5 @@ export const activeProjects: ActiveProject[] = [
         status: "Iterating",
         href: "/",
         technologies: ["Next.js", "TypeScript", "Tailwind CSS"],
-    },
-    {
-        id: "luyra",
-        name: "Luyra",
-        description:
-            "A personal finance workspace for budgets, savings, analytics, reviews, and AI-assisted money coaching.",
-        status: "Iterating",
-        href: "/projects/luyra",
-        technologies: ["Next.js", "Neon", "Supabase Auth", "Anthropic"],
     },
 ]

@@ -31,8 +31,8 @@ const narrativeSections: KnowledgeSection[] = [
         content: [
             "Heang integrates LLM features into shipped products, using the Vercel AI SDK as the integration layer:",
             "- **This portfolio's own assistant** — the chat widget you're using right now — is built on the **OpenAI Responses API** with retrieval grounded in the portfolio's own structured data, so it only answers from real Heang content.",
-            "- **Luyra** (personal finance workspace) includes an optional **Anthropic-powered Money Coach** that answers questions grounded in the user's own finance data.",
-            "- **Hengo** (focused Korean-learning platform) uses OpenAI through authenticated Next.js AI routes for conversation, workplace-message analysis, phrasing generation, structured corrections, and AI Korean voice coaching.",
+            "- **Luyra** (personal finance workspace, now merged into H-Space as its Finance area) was built with an optional **Anthropic-powered Money Coach** that answers questions grounded in the user's own finance data. The coach lives in the public luyra-web repo and has not been moved into H-Space yet.",
+            "- **Hengo Learning** (the Korean-learning experience inside H-Space) uses OpenAI through authenticated Next.js AI routes for conversation, workplace-message analysis, phrasing generation, structured corrections, and AI Korean voice coaching.",
         ].join("\n"),
     },
     {

@@ -31,8 +31,7 @@ Backend-focused portfolio for [Hen Heang](https://henheang.site), a Java and Spr
 
 - **H-Phsar:** Spring Boot and MyBatis B2B marketplace API with Spring Security, JWT, PostgreSQL, order workflows, and real-time notifications.
 - **AuthHub:** reusable Spring Security service with token revocation, MFA, RBAC, audit logging, Flyway, and PostgreSQL.
-- **Hengo:** focused Korean-learning platform for engineers and international professionals in Korea. Next.js 16 and React 19 use Supabase RLS, spaced repetition, AI voice coaching, and authenticated Vercel AI SDK/OpenAI routes.
-- **Luyra:** Next.js personal finance workspace with Supabase Auth, Neon Postgres, scheduled reviews, AI-assisted money coaching, and multi-channel notifications.
+- **H-Space:** personal software ecosystem on Next.js 16 and React 19. Hengo Learning (Korean for engineers and international professionals in Korea) uses Supabase RLS, spaced repetition, AI voice coaching, and authenticated Vercel AI SDK/OpenAI routes. Finance, merged in from the former standalone Luyra app, runs budgets, savings, reviews, and scheduled Telegram/email alerts through server-only routes over Neon Postgres.
 
 ## Technology
 
