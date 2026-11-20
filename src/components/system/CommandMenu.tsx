@@ -250,7 +250,7 @@ export default function CommandMenu({ open, onOpenChange }: CommandMenuProps) {
                             aria-label="Command search"
                             className="h-12 w-full bg-transparent text-sm text-fg placeholder:text-fg-muted focus:outline-none"
                         />
-                        <kbd className="hidden shrink-0 rounded border border-border px-1.5 py-0.5 font-mono text-[11px] text-fg-muted sm:block">
+                        <kbd className="hidden shrink-0 rounded border border-border px-1.5 py-0.5 font-mono text-xs text-fg-muted sm:block">
                             ESC
                         </kbd>
                     </div>

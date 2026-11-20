@@ -17,6 +17,7 @@ import { Footer } from "@/src/components/ui/Footer"
 import { Container } from "@/src/components/system/Container"
 import { Eyebrow } from "@/src/components/system/Eyebrow"
 import { StatusBadge } from "@/src/components/system/StatusBadge"
+import { cn } from "@/src/lib/utils/utils"
 
 // Contact cards tint every icon with the single brand accent, so the social
 // marks render as monochrome glyphs instead of five competing brand colours.
@@ -40,6 +41,9 @@ export function ContactPageClient() {
         { title: "Facebook", value: "HenHeang15", href: personalInfo.socialLinks.facebook, newTab: true, icon: MonoFacebook },
         { title: "Instagram", value: "@hen_heang", href: personalInfo.socialLinks.instagram, newTab: true, icon: MonoInstagram },
     ].filter((card) => Boolean(card.href))
+    const PRIMARY = ["Email", "LinkedIn", "GitHub"]
+    const primaryCards = contactCards.filter((card) => PRIMARY.includes(card.title))
+    const otherCards = contactCards.filter((card) => !PRIMARY.includes(card.title))
 
     return (
         <div className="min-h-screen bg-background text-fg">
@@ -65,32 +69,59 @@ export function ContactPageClient() {
                         </div>
 
                         <div className="space-y-6 lg:col-span-5">
+                            {/* Email, LinkedIn and GitHub are where hiring conversations
+                                happen, so they get full cards (email widest); the other
+                                channels stay one tap away in a compact row. */}
                             <div className="grid gap-4 sm:grid-cols-2">
-                                {contactCards.map((card) => (
+                                {primaryCards.map((card) => (
                                     <a
                                         key={card.title}
                                         href={card.href}
                                         target={card.newTab ? "_blank" : undefined}
                                         rel={card.newTab ? "noopener noreferrer" : undefined}
-                                        className="group relative block rounded-xl border border-border bg-surface p-5 transition-colors hover:border-border-strong"
+                                        className={cn(
+                                            "group relative block rounded-xl border border-border bg-surface p-5 transition-colors hover:border-border-strong",
+                                            card.title === "Email" && "sm:col-span-2",
+                                        )}
                                     >
                                         <card.icon size={18} className="text-brand" />
-                                        <p className="mt-4 font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                                        <p className="mt-4 text-xs font-medium text-fg-muted">
                                             {card.title}
                                         </p>
                                         <p className="mt-1 break-all text-sm font-medium text-fg">{card.value}</p>
-                                        <ExternalLink
-                                            size={13}
-                                            className="absolute right-4 top-4 text-fg-muted opacity-0 transition-opacity group-hover:opacity-100"
-                                            aria-hidden
-                                        />
+                                        {card.newTab && (
+                                            <ExternalLink
+                                                size={13}
+                                                className="absolute right-4 top-4 text-fg-muted"
+                                                aria-hidden
+                                            />
+                                        )}
                                         {card.newTab && <span className="sr-only"> (opens in a new tab)</span>}
                                     </a>
                                 ))}
                             </div>
+                            {otherCards.length > 0 && (
+                                <ul aria-label="Other channels" className="flex flex-wrap gap-2">
+                                    {otherCards.map((card) => (
+                                        <li key={card.title}>
+                                            <a
+                                                href={card.href}
+                                                target={card.newTab ? "_blank" : undefined}
+                                                rel={card.newTab ? "noopener noreferrer" : undefined}
+                                                className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-border bg-surface px-3 text-sm text-fg-secondary transition-colors hover:border-border-strong hover:text-fg"
+                                            >
+                                                <card.icon size={15} className="text-fg-muted" />
+                                                <span>{card.title}</span>
+                                                <span className="text-fg-muted">{card.value}</span>
+                                                {card.newTab && <span className="sr-only"> (opens in a new tab)</span>}
+                                            </a>
+                                        </li>
+                                    ))}
+                                </ul>
+                            )}
 
                             <div className="rounded-xl border border-border bg-surface p-6">
-                                <MapPin size={18} className="text-success" aria-hidden />
+                                <MapPin size={18} className="text-fg-muted" aria-hidden />
                                 <h3 className="mt-4 text-base font-semibold text-fg">Location</h3>
                                 <p className="mt-2 text-sm leading-relaxed text-fg-secondary">
                                     Currently based in Seoul, South Korea. Open to remote opportunities

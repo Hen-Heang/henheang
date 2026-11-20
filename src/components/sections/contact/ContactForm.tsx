@@ -3,6 +3,8 @@
 import React, { useState } from "react"
 import { CheckCircle2 } from "lucide-react"
 import { Button } from "@/src/components/ui/button"
+import { primaryAction } from "@/src/components/system/actionStyles"
+import { cn } from "@/src/lib/utils/utils"
 import { submitContactForm } from "@/app/contact/actions"
 
 export function ContactForm() {
@@ -99,7 +101,7 @@ export function ContactForm() {
                         value={formState.name}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-lg border border-border bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="min-h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         placeholder="Your name"
                     />
                 </div>
@@ -113,7 +115,7 @@ export function ContactForm() {
                         value={formState.email}
                         onChange={handleChange}
                         required
-                        className="w-full rounded-lg border border-border bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        className="min-h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         placeholder="your@email.com"
                     />
                 </div>
@@ -128,7 +130,7 @@ export function ContactForm() {
                     value={formState.subject}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-lg border border-border bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="min-h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     placeholder="Project Inquiry"
                 />
             </div>
@@ -142,14 +144,14 @@ export function ContactForm() {
                     value={formState.message}
                     onChange={handleChange}
                     required
-                    className="w-full rounded-lg border border-border bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                    className="min-h-11 w-full rounded-lg border border-input bg-background px-4 py-2 text-fg placeholder:text-fg-muted focus:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                     placeholder="Tell me about your project..."
                 />
             </div>
             <Button
                 type="submit"
                 disabled={isSubmitting}
-                className="h-11 w-full rounded-xl bg-gradient-brand font-semibold text-white shadow-xs transition-all duration-200 hover:brightness-110 active:scale-[0.98] disabled:opacity-60"
+                className={cn(primaryAction, "w-full")}
             >
                 {isSubmitting ? "Sending…" : "Send Message"}
             </Button>

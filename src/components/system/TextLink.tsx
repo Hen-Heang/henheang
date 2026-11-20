@@ -2,6 +2,7 @@ import React from "react"
 import Link from "next/link"
 import { ArrowRight, ArrowUpRight } from "lucide-react"
 import { cn } from "@/src/lib/utils/utils"
+import { textLinkStyle } from "@/src/components/system/actionStyles"
 
 interface TextLinkProps {
     href: string
@@ -11,10 +12,10 @@ interface TextLinkProps {
     children: React.ReactNode
 }
 
-/** Inline text link with an optional trailing arrow that nudges on hover. */
+/** Brand-coloured text link (44px hit area) with an optional trailing arrow that nudges on hover. */
 export function TextLink({ href, external = false, arrow = true, className, children }: TextLinkProps) {
     const classes = cn(
-        "group inline-flex items-center gap-1.5 text-sm font-medium text-fg transition-colors hover:text-brand",
+        "group", textLinkStyle,
         className,
     )
     const arrowIcon = arrow ? (

@@ -26,7 +26,7 @@ export function ProjectPreviewPanel({ preview, className }: { preview: ProjectPr
         case "api":
             return (
                 <div className={cn("rounded-xl border border-border bg-surface p-5 sm:p-6", className)}>
-                    <p className="mb-4 font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">api</p>
+                    <p className="mb-4 font-mono text-xs text-fg-muted">api</p>
                     <div className="flex flex-col gap-2">
                         {preview.endpoints.slice(0, 5).map((ep, i) => (
                             <div
@@ -35,7 +35,7 @@ export function ProjectPreviewPanel({ preview, className }: { preview: ProjectPr
                             >
                                 <span
                                     className={cn(
-                                        "shrink-0 rounded-md border px-2 py-0.5 font-mono text-[10px] font-semibold",
+                                        "shrink-0 rounded-md border px-2 py-0.5 font-mono text-xs font-semibold",
                                         METHOD_COLOR[ep.method],
                                     )}
                                 >
@@ -51,7 +51,7 @@ export function ProjectPreviewPanel({ preview, className }: { preview: ProjectPr
         case "database":
             return (
                 <div className={cn("rounded-xl border border-border bg-surface p-5 sm:p-6", className)}>
-                    <p className="mb-4 font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">database</p>
+                    <p className="mb-4 font-mono text-xs text-fg-muted">database</p>
                     <div className="grid grid-cols-2 gap-1.5">
                         {preview.tables.slice(0, 8).map((table) => (
                             <code
@@ -68,7 +68,7 @@ export function ProjectPreviewPanel({ preview, className }: { preview: ProjectPr
         case "workflow":
             return (
                 <div className={cn("rounded-xl border border-border bg-surface p-5 sm:p-6", className)}>
-                    <p className="mb-4 font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">workflow</p>
+                    <p className="mb-4 font-mono text-xs text-fg-muted">workflow</p>
                     <div className="flex flex-col gap-1.5">
                         {preview.steps.slice(0, 5).map((step, i) => (
                             <React.Fragment key={step.phase}>

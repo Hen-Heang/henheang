@@ -8,15 +8,20 @@
     margin: 12mm 14mm;
   }
 
-  /* Hide everything outside the printable document (CV or ATS resume) */
-  body > * {
+  /* Print only the document ([data-print-root] on /cv and /resume): hide
+     every element that neither contains the root nor sits inside it.
+
+     The root's ancestors must stay rendered. The previous rule hid every
+     direct child of <body>, which included the page wrapper around the
+     root, so the root rendered 0x0 and every print/PDF came out blank —
+     `display: revert` on the root cannot undo a display:none ancestor.
+     Elements inside the root keep their own print: utilities. */
+  body *:not(:has([data-print-root])):not([data-print-root]):not([data-print-root] *) {
     display: none !important;
   }
 
-  /* Show only the page's print root ([data-print-root] on /cv and /resume) */
-  [data-print-root],
-  [data-print-root] * {
-    display: revert !important;
+  body {
+    background: white !important;
   }
 }
 
@@ -30,31 +35,43 @@
      ghost/outline variants across the admin UI, and must stay neutral.
      --------------------------------------------------------------------- */
   :root {
+    /* One cool-grey neutral (hue ~215) shared by both themes, and one navy
+       brand. Every text token is checked at >= 4.5:1 against all four
+       surface steps (background, surface, elevated, hover), not just white. */
     --background: 0 0% 100%;
-    --surface: 240 5% 98%;
-    --surface-hover: 240 5% 95%;
-    --surface-elevated: 240 5% 96%;
-    --border: 240 6% 90%;
-    --border-strong: 240 5% 83%; /* also serves as the light-mode border-hover stop */
-    --fg: 240 10% 4%;
-    --fg-secondary: 240 5% 32%;
-    --fg-muted: 240 4% 45%;
-    --brand: 224 76% 48%; /* #1d4ed8 — blue-700, AA (6.7:1) on white */
-    --brand-hover: 226 71% 40%; /* #1e40af — blue-800 */
-    --brand-active: 224 64% 33%; /* #1e3a8a — blue-900, pressed state */
-    --brand-dark: 224 64% 33%; /* #1e3a8a — deep accent for subtle fills */
+    --surface: 214 32% 96.5%; /* #f3f6f9 — section bands, cards */
+    --surface-hover: 214 28% 92.5%;
+    --surface-elevated: 214 30% 94.5%; /* #edf0f5 */
+    --border: 214 24% 87%; /* #d6dde6 — decorative dividers */
+    --border-strong: 215 18% 76%; /* #b7c0cd — also the light-mode border-hover stop */
+    --fg: 222 47% 11%; /* #0f1729 */
+    --fg-secondary: 215 25% 27%; /* #344256 */
+    --fg-muted: 215 16% 42%; /* #5a687c — 4.7:1 even on surface-hover */
+    --brand: 219 85% 38%; /* #0f48b3 — navy, 8.1:1 on white */
+    --brand-hover: 221 78% 31%; /* #11418c */
+    --brand-active: 223 70% 25%; /* #12356e — pressed state */
+    --brand-dark: 223 70% 25%; /* deep accent for subtle fills */
     --brand-foreground: 0 0% 100%;
-    --success: 152 60% 30%;
-    --warning: 32 95% 44%; /* #d97706 — amber-600, darkened for AA on white */
-    --error: 0 72% 51%; /* #dc2626 — red-600, darkened for AA on white */
-    --page-ambient: radial-gradient(ellipse 65% 26rem at 20% -8rem, rgb(29 78 216 / 0.05), transparent 60%), radial-gradient(ellipse 60% 22rem at 85% -6rem, rgb(56 189 248 / 0.06), transparent 62%);
+    /* The one filled primary action: solid navy with white text in both
+       themes (brand itself turns light-blue in dark mode, where white text
+       on it would fail). */
+    --action: var(--brand);
+    --action-hover: var(--brand-hover);
+    --action-active: var(--brand-active);
+    --action-foreground: 0 0% 100%;
+    --success: 142 72% 25%; /* #126e34 */
+    --warning: 24 90% 32%; /* #9b4308 — amber-600 failed AA on tinted surfaces */
+    --error: 0 74% 42%; /* #ba1c1c */
+    /* The ambient brand glow was retired: blue is reserved for actions,
+       links and the request-path diagram. */
+    --page-ambient: none;
 
-    /* Layered-hero tokens. The scrim is directional, not flat: the hero copy
-       is left-aligned, so it stays near-opaque on the left and opens up on
-       the right, where the drifting chips are free to read as texture. The
-       vignette then settles the rim. Both are authored per-theme rather than
-       reused with an opacity tweak — a dark hero needs a genuinely different
-       mix, not the light one dimmed. */
+    /* Layered-hero tokens (LabHeroBackdrop on /lab/ax-engineering). The scrim
+       is directional, not flat: the hero copy is left-aligned, so it stays
+       near-opaque on the left and opens up on the right, where the drifting
+       chips are free to read as texture. The vignette then settles the rim.
+       Both are authored per-theme rather than reused with an opacity tweak —
+       a dark hero needs a genuinely different mix, not the light one dimmed. */
     --hero-scrim: linear-gradient(to right, hsl(var(--surface) / 0.97) 0%, hsl(var(--surface) / 0.94) 38%, hsl(var(--surface) / 0.72) 72%, hsl(var(--surface) / 0.6) 100%);
     --hero-vignette: radial-gradient(ellipse 70% 55% at 50% 50%, hsl(var(--background) / 0.08) 0%, hsl(var(--background) / 0.5) 100%);
     --hero-tile-bg: hsl(var(--brand) / 0.05);
@@ -63,18 +80,18 @@
 
     /* Code/terminal chrome: deliberately dark in both themes (same convention
        as GitHub/VS Code code blocks), so these are not overridden in .dark. */
-    --surface-code: 240 8% 5%; /* #0c0c0e */
-    --surface-code-foreground: 240 5% 84%; /* #d4d4d8 */
+    --surface-code: 222 28% 7%; /* #0d111a */
+    --surface-code-foreground: 215 20% 84%; /* #ccd4df */
 
-    /* Navy gradient family: deliberately dark in both themes (same convention
-       as --surface-code above). Used sparingly — primary CTAs and the hero
-       console chrome only, not applied per-section or per-card. */
+    /* Navy family: deliberately dark in both themes (same convention as
+       --surface-code above), for code/console chrome. */
     --navy: 213 69% 9%; /* #071426 */
     --navy-surface: 212 69% 14%; /* #0B1F3A */
     --navy-elevated: 211 65% 18%; /* #102A4C */
-    --gradient-blue: 221 83% 53%; /* #1D4ED8 — indigo, gradient stop */
-    --gradient-cyan: 199 89% 60%; /* #38BDF8 — cyan highlight, ambient/chrome accent only (fails AA under white button text, so it's never a CTA gradient stop) */
-    --gradient-brand: linear-gradient(135deg, hsl(var(--navy-elevated)) 0%, hsl(var(--gradient-blue)) 100%);
+    /* Primary actions are flat now. `bg-gradient-brand` is still used by lab
+       and assistant buttons with white text, so it resolves to the solid
+       action colour rather than being removed. */
+    --gradient-brand: linear-gradient(hsl(var(--action)), hsl(var(--action)));
     --gradient-console: linear-gradient(90deg, hsl(var(--navy)) 0%, hsl(var(--navy-elevated)) 100%);
 
     --font-sans: var(--font-inter), 'Inter', system-ui, sans-serif;
@@ -87,50 +104,57 @@
 
     /* shading tokens (kept for admin + ui primitives), repointed to the palette */
     --foreground: var(--fg);
-    --input: var(--border);
+    /* Form-field boundaries need 3:1 (WCAG 1.4.11); --border is decorative
+       and sits at ~1.4:1, so inputs get their own token. */
+    --input: 216 12% 52%; /* 3.6:1 on surface */
     --ring: var(--brand);
 
-    --primary: 240 10% 4%;
-    --primary-foreground: 0 0% 98%;
+    --primary: var(--fg);
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 5% 96%;
-    --secondary-foreground: 240 6% 10%;
-    --muted: 240 5% 96%;
+    --secondary: var(--surface-elevated);
+    --secondary-foreground: var(--fg);
+    --muted: var(--surface-elevated);
     --muted-foreground: var(--fg-muted);
-    --accent: 240 5% 96%;
-    --accent-foreground: 240 6% 10%;
+    --accent: var(--surface-elevated);
+    --accent-foreground: var(--fg);
 
     --card: 0 0% 100%;
     --card-foreground: var(--fg);
     --popover: 0 0% 100%;
     --popover-foreground: var(--fg);
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
+    --destructive: var(--error); /* the old red-500 gave white text only 3.8:1 */
+    --destructive-foreground: 0 0% 100%;
 
     --radius: 0.5rem;
   }
 
   .dark {
     /* Near-black with a navy undertone, matching the navy CTA/console family. */
+    /* Same cool-grey family as light, darkened. Surfaces get lighter as they
+       rise, because shadows are invisible on a dark ground. */
     --background: 222 47% 5%; /* #070b13 */
-    --surface: 222 35% 8%; /* #0d121c */
-    --surface-elevated: 222 30% 10%; /* #121825 */
-    --surface-hover: 222 26% 13%; /* #181f2d */
-    --border: 220 20% 17%; /* #23293a */
-    --border-strong: 218 15% 27%; /* #3a4251 — border-hover stop */
-    --fg: 0 0% 98%; /* #fafafa */
-    --fg-secondary: 218 11% 68%; /* #a5abb6 */
-    --fg-muted: 218 9% 57%; /* raised for AA contrast on dark backgrounds */
-    --brand: 213 94% 68%; /* #60a5fa — blue-400 */
-    --brand-hover: 212 96% 78%; /* #93c5fd — blue-300 */
-    --brand-active: 217 91% 60%; /* #3b82f6 — blue-500 */
-    --brand-dark: 224 76% 48%; /* #1d4ed8 — blue-700 */
+    --surface: 222 32% 10%; /* #111622 */
+    --surface-elevated: 221 27% 12%; /* #161c27 */
+    --surface-hover: 220 24% 15%;
+    --border: 219 20% 20%; /* #29303d */
+    --border-strong: 218 16% 30%; /* #404959 — border-hover stop */
+    --fg: 210 40% 98%; /* #f8fafc */
+    --fg-secondary: 215 20% 72%; /* #a9b5c6 */
+    --fg-muted: 217 12% 60%; /* #8d96a5 */
+    --brand: 217 92% 66%; /* #5996f8 — the navy lifted for a dark ground; 5.3:1 on surface-hover */
+    --brand-hover: 216 88% 76%;
+    --brand-active: 217 85% 58%;
+    --brand-dark: 219 85% 38%;
     --brand-foreground: 222 47% 7%; /* #0a0f1a */
+    --action: 219 80% 46%; /* white text 6.2:1; 3.2:1 against the page */
+    --action-hover: 219 80% 52%;
+    --action-active: 219 80% 40%;
     --success: 142 69% 58%; /* #4ade80 */
     --warning: 43 96% 56%; /* #fbbf24 */
     --error: 0 91% 71%; /* #f87171 */
-    --page-ambient: radial-gradient(ellipse 65% 26rem at 20% -8rem, rgb(29 78 216 / 0.14), transparent 60%), radial-gradient(ellipse 60% 22rem at 85% -6rem, rgb(56 189 248 / 0.1), transparent 62%);
+    --page-ambient: none;
 
     --hero-scrim: linear-gradient(to right, hsl(var(--background) / 0.95) 0%, hsl(var(--background) / 0.9) 38%, hsl(var(--background) / 0.62) 72%, hsl(var(--background) / 0.5) 100%);
     --hero-vignette: radial-gradient(ellipse 70% 55% at 50% 50%, hsl(0 0% 0% / 0.2) 0%, hsl(0 0% 0% / 0.6) 100%);
@@ -139,22 +163,22 @@
     --hero-tile-fg: hsl(var(--brand) / 0.5);
 
     --foreground: var(--fg);
-    --input: var(--border);
+    --input: 218 12% 46%; /* 3.7:1 on surface */
     --ring: var(--brand);
 
-    --primary: 0 0% 98%;
-    --primary-foreground: 240 6% 10%;
+    --primary: var(--fg);
+    --primary-foreground: 222 47% 7%;
 
-    --secondary: 222 24% 15%;
-    --secondary-foreground: 0 0% 98%;
-    --muted: 222 24% 15%;
+    --secondary: var(--surface-hover);
+    --secondary-foreground: var(--fg);
+    --muted: var(--surface-hover);
     --muted-foreground: var(--fg-secondary);
-    --accent: 222 24% 15%;
-    --accent-foreground: 0 0% 98%;
+    --accent: var(--surface-hover);
+    --accent-foreground: var(--fg);
 
-    --card: 222 35% 8%;
+    --card: var(--surface);
     --card-foreground: var(--fg);
-    --popover: 222 47% 5%;
+    --popover: var(--surface-elevated);
     --popover-foreground: var(--fg);
 
     --destructive: 0 62.8% 30.6%;
@@ -214,6 +238,15 @@
        rubber-band at the edge and trigger Chrome/macOS's swipe-to-navigate
        gesture, silently sending the visitor back or forward in history. */
     overscroll-behavior-x: none;
+  }
+
+  /* Below lg, pages with SiteHeader open the assistant from a header button,
+     so the floating trigger would only cover content there. Pure CSS (no
+     effect) so the two never show together, even before hydration. */
+  @media (max-width: 1023.98px) {
+    body:has([data-site-header]) [data-assistant-fab] {
+      display: none;
+    }
   }
 
   /* Shared hover treatment for cards and tiles across the lab.

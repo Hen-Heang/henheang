@@ -74,7 +74,8 @@ export function ProjectsIndex({ projects, filter }: { projects: Project[]; filte
                     <ProjectFilterBar active={filter} counts={counts} />
                 </div>
 
-                <p className="mt-6 font-mono text-xs uppercase tracking-[0.15em] text-fg-muted" role="status">
+                {/* Visually hidden: the active filter pill already shows the count. Kept as a live status so screen readers hear the result of a filter change. */}
+                <p className="sr-only" role="status">
                     {filtered.length} {filtered.length === 1 ? "project" : "projects"}
                 </p>
 
@@ -98,7 +99,7 @@ export function ProjectsIndex({ projects, filter }: { projects: Project[]; filte
                         {remaining.length > 0 && (
                             <div className={featured.length > 0 ? "mt-14 sm:mt-16" : "mt-10"}>
                                 {featured.length > 0 && (
-                                    <h2 className="mb-6 font-mono text-xs font-semibold uppercase tracking-[0.15em] text-fg-muted">
+                                    <h2 className="mb-6 text-lg font-semibold tracking-tight text-fg">
                                         All projects
                                     </h2>
                                 )}

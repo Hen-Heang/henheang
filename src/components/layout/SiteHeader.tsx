@@ -13,6 +13,7 @@ import {
     FlaskConical,
     MessageCircle,
     Route,
+    Sparkles,
     UserRound,
 } from "lucide-react"
 import { ThemeToggle } from "@/src/components/system/ThemeToggle"
@@ -95,7 +96,10 @@ export function SiteHeader() {
 
     return (
         <>
+            {/* data-site-header lets globals.css hide the floating assistant
+                trigger on phones, where this header has its own button. */}
             <header
+                data-site-header
                 className={`sticky top-0 z-[100] transition-colors duration-200 ${
                     scrolled
                         ? "border-b border-border bg-background/80 backdrop-blur-md"
@@ -178,10 +182,26 @@ export function SiteHeader() {
                                 ⌘K
                             </kbd>
                         </button>
-                        <ThemeToggle />
+                        {/* Phones get the assistant here instead of a floating
+                            button that would sit over page content. */}
+                        <button
+                            type="button"
+                            onClick={() =>
+                                window.dispatchEvent(
+                                    new Event("hh:assistant-open"),
+                                )
+                            }
+                            aria-label="Ask about my work"
+                            className="flex h-11 w-11 items-center justify-center rounded-lg text-fg-muted transition-colors hover:bg-surface-hover hover:text-fg lg:hidden"
+                        >
+                            <Sparkles size={18} aria-hidden />
+                        </button>
+                        <ThemeToggle className="h-11 w-11 rounded-lg lg:h-9 lg:w-9" />
+                        {/* Outlined, not filled: the page's own primary action
+                            is the one filled button in view. */}
                         <Link
                             href="/contact"
-                            className="shadow-xs ml-1 hidden h-9 items-center gap-2 rounded-lg bg-gradient-brand px-4 text-xs font-semibold text-white transition-all hover:brightness-110 active:scale-[0.98] lg:flex"
+                            className="ml-1 hidden h-9 items-center gap-2 rounded-lg border border-border-strong bg-background px-4 text-xs font-semibold text-fg transition-colors hover:bg-surface-hover lg:flex"
                         >
                             <MessageCircle size={14} aria-hidden />
                             Contact

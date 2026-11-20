@@ -15,6 +15,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "seed": "npx tsx scripts/seed.ts",
+    "resume:pdf": "npx tsx scripts/export-resume-pdf.ts",
     "ai:index:lab": "npx tsx --conditions=react-server scripts/index-lab-content.ts",
     "eval:ai:smoke": "vitest run src/lib/ai/evals/retrieval-evals.test.ts",
     "eval:ai": "vitest run src/lib/ai/evals/live-model.test.ts",

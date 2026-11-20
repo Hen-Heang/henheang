@@ -87,7 +87,7 @@ export function AboutIntro({ profile }: { profile: ProfileContentParsed }) {
                             </div>
                             {profile.languages && profile.languages.length > 0 && (
                                 <div>
-                                    <dt className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">Languages</dt>
+                                    <dt className="text-xs font-semibold text-fg-muted">Languages</dt>
                                     <dd className="mt-1.5">
                                         <ul className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-fg">
                                             {profile.languages.map((language) => (
@@ -103,7 +103,7 @@ export function AboutIntro({ profile }: { profile: ProfileContentParsed }) {
                                 </div>
                             )}
                             <div>
-                                <dt className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">Availability</dt>
+                                <dt className="text-xs font-semibold text-fg-muted">Availability</dt>
                                 <dd className="mt-1 text-sm text-fg">
                                     {profile.available ? "Open to opportunities" : "Currently engaged"}
                                 </dd>

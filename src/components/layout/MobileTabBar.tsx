@@ -5,10 +5,10 @@ import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
     BriefcaseBusiness,
+    FileText,
     House,
     MoreHorizontal,
     UserRound,
-    FlaskConical,
 } from "lucide-react"
 
 const TABS = [
@@ -19,13 +19,15 @@ const TABS = [
         match: ["/projects"],
         icon: BriefcaseBusiness,
     },
-    {
-        label: "Lab",
-        href: "/lab",
-        match: ["/lab", "/ai-engineering"],
-        icon: FlaskConical,
-    },
     { label: "About", href: "/about", match: ["/about"], icon: UserRound },
+    // Resume is the page recruiters look for first, so it gets a tab; Lab
+    // lives in the "More" sheet with the rest of the navigation.
+    {
+        label: "Resume",
+        href: "/resume",
+        match: ["/resume", "/cv"],
+        icon: FileText,
+    },
 ] as const
 
 function isActive(pathname: string, match: readonly string[]): boolean {
@@ -64,7 +66,7 @@ export function MobileTabBar({
                             key={tab.label}
                             href={tab.href}
                             aria-current={active ? "page" : undefined}
-                            className={`flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-[21px] px-1 text-[10px] font-semibold tracking-tight transition-colors active:scale-95 ${
+                            className={`flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-[21px] px-1 text-xs font-semibold tracking-tight transition-colors active:scale-95 ${
                                 active
                                     ? "bg-surface/90 text-brand shadow-sm ring-1 ring-black/5 dark:bg-white/10 dark:ring-white/10"
                                     : "text-fg-muted hover:bg-surface/60 hover:text-fg"
@@ -87,7 +89,7 @@ export function MobileTabBar({
                     aria-current={moreSelected ? "page" : undefined}
                     aria-expanded={moreActive}
                     aria-haspopup="dialog"
-                    className={`flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-[21px] px-1 text-[10px] font-semibold tracking-tight transition-colors active:scale-95 ${
+                    className={`flex min-h-14 flex-col items-center justify-center gap-0.5 rounded-[21px] px-1 text-xs font-semibold tracking-tight transition-colors active:scale-95 ${
                         moreSelected
                             ? "bg-surface/90 text-brand shadow-sm ring-1 ring-black/5 dark:bg-white/10 dark:ring-white/10"
                             : "text-fg-muted hover:bg-surface/60 hover:text-fg"

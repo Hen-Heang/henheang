@@ -138,34 +138,45 @@ test.describe("Homepage polish", () => {
         })
     }
 
-    test("keeps Radix tab keyboard semantics and panel height stable", async ({
+    test("server-renders the AuthHub request path and opens one hop at a time from the keyboard", async ({
         page,
+        request,
     }) => {
+        // Server component with native <details>: the real endpoint is in the
+        // HTML before any JavaScript runs.
+        const html = await (await request.get("/")).text()
+        expect(html).toContain("How a login moves through AuthHub")
+        expect(html).toContain("/api/auth/login")
+
         await page.setViewportSize({ width: 1440, height: 900 })
         await page.goto("/")
 
-        // The hero opens on the API view; the H-Phsar architecture flow is
-        // shown once, in Selected Work, rather than duplicated here.
-        const tabList = page.getByRole("tablist", { name: "Engineering views" })
-        const api = tabList.getByRole("tab", { name: "api" })
-        const database = tabList.getByRole("tab", { name: "database" })
-        await expect(tabList.getByRole("tab", { name: "architecture" })).toHaveCount(0)
-        await expect(api).toHaveAttribute("aria-selected", "true")
-        await expect(page.getByRole("tabpanel")).toContainText(
-            "HTTP/1.1 200 OK",
-        )
+        const path = page.getByRole("figure", {
+            name: "How a login moves through AuthHub",
+        })
+        await expect(path).toBeVisible()
+        const hops = path.locator("details")
+        await expect(hops).toHaveCount(5)
+        await expect(hops.first()).toHaveAttribute("open", "")
 
-        const panel = tabList.locator("xpath=../../..")
-        const before = await panel.boundingBox()
-        await api.focus()
-        await page.keyboard.press("ArrowRight")
-        await expect(database).toBeFocused()
-        await expect(database).toHaveAttribute("aria-selected", "true")
-        const after = await panel.boundingBox()
+        // The response hop holds the token body; opening it by keyboard closes
+        // the request hop (exclusive <details name>).
+        const response = path.locator("summary", { hasText: "Response" })
+        await response.focus()
+        await page.keyboard.press("Enter")
+        await expect(hops.last()).toHaveAttribute("open", "")
+        await expect(hops.first()).not.toHaveAttribute("open", "")
+        await expect(path).toContainText("HTTP/1.1 200 OK")
 
-        expect(
-            Math.abs((after?.height ?? 0) - (before?.height ?? 0)),
-        ).toBeLessThanOrEqual(1)
+        // Each hop is a full-size touch target.
+        for (const summary of await path.locator("summary").all()) {
+            const box = await summary.boundingBox()
+            expect(box?.height ?? 0).toBeGreaterThanOrEqual(44)
+        }
+
+        await expect(
+            path.getByRole("link", { name: "AuthHub case study" }),
+        ).toHaveAttribute("href", "/projects/authhub")
     })
 
     test("renders static hero content and preserves focus treatment with reduced motion", async ({

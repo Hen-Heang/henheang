@@ -27,9 +27,13 @@ const config: Config = {
 				sans: ["var(--font-inter)", "Inter", "system-ui", "sans-serif"],
 				mono: ["var(--font-mono)", "ui-monospace", "SFMono-Regular", "Menlo", "monospace"],
 			},
+			// Type scale, top to bottom. The home hero name is the single largest
+			// step on the site; page titles and section headings sit below it so a
+			// section heading never outranks the person the page is about.
 			fontSize: {
 				display: ["clamp(3rem, 8vw, 6.5rem)", { lineHeight: "0.98", letterSpacing: "-0.055em", fontWeight: "600" }],
-				"display-sm": ["clamp(2rem, 5vw, 4rem)", { lineHeight: "1.05", letterSpacing: "-0.03em", fontWeight: "600" }],
+				hero: ["clamp(2.75rem, 7vw, 4.75rem)", { lineHeight: "1", letterSpacing: "-0.045em", fontWeight: "700" }],
+				"display-sm": ["clamp(1.875rem, 3.6vw, 3rem)", { lineHeight: "1.08", letterSpacing: "-0.03em", fontWeight: "600" }],
 			},
 			maxWidth: {
 				content: "80rem", // 1280px page width
@@ -61,6 +65,12 @@ const config: Config = {
 					active: "hsl(var(--brand-active) / <alpha-value>)",
 					dark: "hsl(var(--brand-dark) / <alpha-value>)",
 					foreground: "hsl(var(--brand-foreground) / <alpha-value>)",
+				},
+				action: {
+					DEFAULT: "hsl(var(--action) / <alpha-value>)",
+					hover: "hsl(var(--action-hover) / <alpha-value>)",
+					active: "hsl(var(--action-active) / <alpha-value>)",
+					foreground: "hsl(var(--action-foreground) / <alpha-value>)",
 				},
 				success: "hsl(var(--success) / <alpha-value>)",
 				warning: "hsl(var(--warning) / <alpha-value>)",
@@ -134,12 +144,27 @@ const config: Config = {
 					from: { transform: "translateX(0)" },
 					to: { transform: "translateX(-50%)" },
 				},
+				// Request-path diagram: the rail fills top to bottom once on
+				// load and each hop's node lights as the fill reaches it. The
+				// element's resting styles are the lit end state, so with
+				// `motion-reduce:animate-none` it simply renders finished.
+				"rail-fill": {
+					from: { transform: "scaleY(0)" },
+					to: { transform: "scaleY(1)" },
+				},
+				"node-on": {
+					from: { borderColor: "hsl(var(--border-strong))", color: "hsl(var(--fg-muted))", boxShadow: "0 0 0 0 hsl(var(--brand) / 0)" },
+					"60%": { boxShadow: "0 0 0 6px hsl(var(--brand) / 0.18)" },
+					to: { borderColor: "hsl(var(--brand))", color: "hsl(var(--brand))", boxShadow: "0 0 0 0 hsl(var(--brand) / 0)" },
+				},
 			},
 			animation: {
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
 				drift: "drift 240s linear infinite",
 				"drift-slow": "drift 360s linear infinite",
+				"rail-fill": "rail-fill 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both",
+				"node-on": "node-on 0.6s ease-out both",
 			},
 		},
 	},

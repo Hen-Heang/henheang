@@ -2,6 +2,8 @@ import React from "react"
 import Link from "next/link"
 import { ArrowRight, FileText, MessageCircle } from "lucide-react"
 import { Container } from "@/src/components/system/Container"
+import { primaryAction, secondaryAction } from "@/src/components/system/actionStyles"
+import { cn } from "@/src/lib/utils/utils"
 import { Reveal } from "@/src/components/system/Reveal"
 
 export function ContactCTASection() {
@@ -9,11 +11,10 @@ export function ContactCTASection() {
         <section className="border-t border-border py-16 sm:py-24">
             <Container>
                 <Reveal>
-                    <div className="relative overflow-hidden rounded-3xl border border-border bg-gradient-to-b from-surface via-surface to-surface-elevated/80 p-8 shadow-sm sm:p-12 lg:p-16">
-                        <div className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brand/5 blur-3xl" />
+                    <div className="relative overflow-hidden rounded-3xl border border-border bg-surface p-8 sm:p-12 lg:p-16">
                         <div className="relative z-10 flex flex-col items-start gap-8 lg:flex-row lg:items-center lg:justify-between">
                             <div className="max-w-2xl">
-                                <span className="font-mono text-xs font-semibold uppercase tracking-[0.18em] text-brand">
+                                <span className="text-sm font-medium text-fg-muted">
                                     Let&apos;s Build Together
                                 </span>
                                 <h2 className="mt-3 text-3xl font-extrabold tracking-tight text-fg sm:text-4xl lg:text-5xl leading-tight">
@@ -26,7 +27,7 @@ export function ContactCTASection() {
                             <div className="flex w-full shrink-0 flex-col gap-3 sm:w-auto sm:flex-row">
                                 <Link
                                     href="/contact"
-                                    className="group inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-gradient-brand px-6 text-sm font-semibold text-white shadow-xs transition-all duration-200 hover:brightness-110 active:scale-[0.98]"
+                                    className={cn(primaryAction, "group whitespace-nowrap")}
                                 >
                                     <MessageCircle size={16} aria-hidden />
                                     <span>Start a conversation</span>
@@ -34,7 +35,7 @@ export function ContactCTASection() {
                                 </Link>
                                 <Link
                                     href="/resume"
-                                    className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl border border-border bg-surface px-5 text-sm font-medium text-fg transition-all duration-200 hover:border-border-strong hover:bg-surface-hover active:scale-[0.98]"
+                                    className={cn(secondaryAction, "whitespace-nowrap")}
                                 >
                                     <FileText size={15} aria-hidden />
                                     <span>View Resume</span>

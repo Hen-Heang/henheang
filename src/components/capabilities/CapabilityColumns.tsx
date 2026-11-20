@@ -16,17 +16,14 @@ interface EvidenceSource {
     href?: string
 }
 
+// One neutral tile for every group: tinted blue/green/amber tiles read as
+// four competing accents, and blue is reserved for actions and links.
+const neutralTile = "border border-border bg-background text-fg-secondary"
 const groupVisuals: Record<string, { icon: LucideIcon; accent: string }> = {
-    Backend: { icon: Braces, accent: "bg-brand/10 text-brand" },
-    Data: { icon: Database, accent: "bg-success/10 text-success" },
-    "Frontend Support": {
-        icon: PanelsTopLeft,
-        accent: "bg-warning/10 text-warning",
-    },
-    Delivery: {
-        icon: GitBranch,
-        accent: "bg-surface-elevated text-fg-secondary",
-    },
+    Backend: { icon: Braces, accent: neutralTile },
+    Data: { icon: Database, accent: neutralTile },
+    "Frontend Support": { icon: PanelsTopLeft, accent: neutralTile },
+    Delivery: { icon: GitBranch, accent: neutralTile },
 }
 
 function getEvidenceSources(group: EnrichedCapabilityGroup): EvidenceSource[] {
@@ -92,7 +89,7 @@ export function CapabilityColumns({
                                     </div>
                                 </div>
 
-                                <ul className="mt-5 grid gap-x-5 sm:grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+                                <ul className="mt-5 grid grid-cols-2 gap-x-5 md:grid-cols-1 lg:grid-cols-2">
                                     {group.technologies.map((technology) => (
                                         <li
                                             key={technology.name}
@@ -118,7 +115,7 @@ export function CapabilityColumns({
                                 {evidenceSources.length > 0 && (
                                     <div className="mt-auto border-t border-border pt-4">
                                         <div className="flex flex-wrap items-center gap-x-1.5 gap-y-1 text-xs text-fg-muted">
-                                            <span className="font-mono text-[10px] font-semibold uppercase tracking-wider">
+                                            <span className="text-xs font-semibold">
                                                 Used in
                                             </span>
                                             {evidenceSources.map(
@@ -159,8 +156,8 @@ export function CapabilityColumns({
             </div>
 
             <Reveal delay={0.1}>
-                <aside className="mt-4 flex items-start gap-3 rounded-2xl border border-brand/20 bg-brand/[0.03] p-5 sm:p-6">
-                    <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-brand/10 text-brand">
+                <aside className="mt-4 flex items-start gap-3 rounded-2xl border border-border bg-surface p-5 sm:p-6">
+                    <span className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl ${neutralTile}`}>
                         <Bot size={18} aria-hidden="true" />
                     </span>
                     <div className="min-w-0">

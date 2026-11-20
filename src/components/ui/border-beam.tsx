@@ -26,7 +26,7 @@ export function BorderBeam({
     duration = 8,
     delay = 0,
     colorFrom = "hsl(var(--brand))",
-    colorTo = "hsl(var(--gradient-cyan))",
+    colorTo = "hsl(var(--brand-hover))",
 }: BorderBeamProps) {
     const reduceMotion = useReducedMotion()
     if (reduceMotion) return null

@@ -9,22 +9,23 @@ import { ArchitecturePreview } from "@/src/components/system/ArchitecturePreview
 import { CaseStudyTOC, type TocItem } from "@/src/components/projects/CaseStudyTOC"
 import { ScreenshotGallery } from "@/src/components/projects/ScreenshotGallery"
 import { cn } from "@/src/lib/utils/utils"
+import { primaryAction, secondaryAction } from "@/src/components/system/actionStyles"
 import type { Project } from "@/src/lib/types"
 
 type AdjacentProject = Pick<Project, "slug" | "title"> | null
 
 const methodColor: Record<string, string> = {
-    GET: "bg-sky-500/10 text-sky-600 dark:text-sky-400",
+    GET: "bg-brand/10 text-brand",
     POST: "bg-success/10 text-success",
-    PUT: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-    PATCH: "bg-amber-500/10 text-amber-600 dark:text-amber-400",
-    DELETE: "bg-red-500/10 text-red-500",
+    PUT: "bg-warning/10 text-warning",
+    PATCH: "bg-warning/10 text-warning",
+    DELETE: "bg-error/10 text-error",
 }
 
 function Block({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
     return (
         <section id={id} className="scroll-mt-24 rounded-xl border border-border bg-surface p-4 sm:p-6">
-            <h2 className="font-mono text-xs font-medium uppercase tracking-[0.15em] text-fg-muted">{title}</h2>
+            <h2 className="text-lg font-semibold tracking-tight text-fg">{title}</h2>
             <div className="mt-4">{children}</div>
         </section>
     )
@@ -57,30 +58,15 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
             <div className="py-section pt-12 md:pt-16">
                 <Link
                     href="/projects"
-                    className="mb-8 inline-flex items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
+                    className="mb-6 inline-flex min-h-11 items-center gap-2 text-sm text-fg-muted transition-colors hover:text-fg"
                 >
                     <ArrowLeft size={16} aria-hidden /> Back to Projects
                 </Link>
 
-                <div
-                    className={cn(
-                        "relative aspect-[4/3] overflow-hidden rounded-xl border border-border sm:aspect-video",
-                        project.imageFit === "contain" && "bg-[#000611]",
-                    )}
-                >
-                    <Image
-                        src={project.image || "/image/placeholder_image.png"}
-                        alt={project.title}
-                        fill
-                        priority
-                        className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
-                    />
-                </div>
-
-                <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
                     <div>
                         {(project.category || project.ownership) && (
-                            <p className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">
+                            <p className="text-sm font-medium text-fg-muted">
                                 {[project.category, project.ownership].filter(Boolean).join(" · ")}
                             </p>
                         )}
@@ -112,7 +98,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                             href={project.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex h-10 items-center justify-center gap-2 rounded-lg border border-border px-4 text-sm font-medium text-fg transition-colors hover:border-border-strong hover:bg-surface-hover"
+                            className={secondaryAction}
                         >
                             <GithubIcon size={16} brand={false} /> GitHub
                         </a>
@@ -122,7 +108,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                             href={project.demo}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex h-10 items-center justify-center rounded-lg bg-brand px-4 text-sm font-medium text-brand-foreground transition-opacity hover:opacity-90"
+                            className={primaryAction}
                         >
                             Live Demo
                         </a>
@@ -142,6 +128,23 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                         </li>
                     ))}
                 </ul>
+
+                {/* Cover after the title block: the title, role, links and stack are what a
+                    reviewer needs first; the artwork supports them rather than filling the first screen. */}
+                <div
+                    className={cn(
+                        "relative mt-10 aspect-video overflow-hidden rounded-xl border border-border bg-surface-elevated",
+                        project.imageFit === "contain" && "bg-navy",
+                    )}
+                >
+                    <Image
+                        src={project.image || "/image/placeholder_image.png"}
+                        alt={project.title}
+                        fill
+                        priority
+                        className={project.imageFit === "contain" ? "object-contain" : "object-cover"}
+                    />
+                </div>
 
                 <div className="mt-10 grid gap-8 sm:mt-12 lg:grid-cols-[1fr_220px] lg:gap-16">
                     <div className="flex flex-col gap-6">
@@ -232,7 +235,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                                                         <div className="flex min-w-0 items-start gap-2">
                                                             <span
                                                                 className={cn(
-                                                                    "shrink-0 rounded-md px-2 py-0.5 font-mono text-[11px] font-semibold",
+                                                                    "shrink-0 rounded-md px-2 py-0.5 font-mono text-xs font-semibold",
                                                                     methodColor[endpoint.method] ?? "bg-surface-hover text-fg",
                                                                 )}
                                                             >
@@ -279,7 +282,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                                             <li key={index} className="rounded-lg border border-border bg-background p-4">
                                                 {decision.challenge && (
                                                     <>
-                                                        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-fg-muted">
+                                                        <p className="text-xs font-semibold text-fg-muted">
                                                             Challenge
                                                         </p>
                                                         <p className="mt-1 text-sm leading-relaxed text-fg-secondary">
@@ -289,7 +292,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                                                 )}
                                                 {decision.solution && (
                                                     <div className={decision.challenge ? "mt-3 border-t border-border pt-3" : undefined}>
-                                                        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-success">
+                                                        <p className="text-xs font-semibold text-success">
                                                             Decision
                                                         </p>
                                                         <p className="mt-1 text-sm leading-relaxed text-fg-secondary">
@@ -307,7 +310,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                                         <ul className="mt-3 space-y-2.5">
                                             {project.lessonsLearned.slice(0, 2).map((lesson) => (
                                                 <li key={lesson} className="flex gap-3 text-sm leading-relaxed text-fg-secondary">
-                                                    <Lightbulb size={15} className="mt-0.5 shrink-0 text-amber-500" aria-hidden />
+                                                    <Lightbulb size={15} className="mt-0.5 shrink-0 text-warning" aria-hidden />
                                                     {lesson}
                                                 </li>
                                             ))}
@@ -323,7 +326,7 @@ export function CaseStudy({ project, nextProject }: { project: Project; nextProj
                                 className="group flex items-center justify-between rounded-xl border border-border bg-surface p-4 transition-colors hover:border-border-strong sm:p-6"
                             >
                                 <div>
-                                    <span className="font-mono text-xs uppercase tracking-[0.15em] text-fg-muted">Next Project</span>
+                                    <span className="text-xs font-medium text-fg-muted">Next Project</span>
                                     <p className="mt-1 text-lg font-semibold text-fg">{nextProject.title}</p>
                                 </div>
                                 <ArrowRight
